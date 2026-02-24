@@ -1,11 +1,75 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js"></script>
-    <title>Kanban Board</title>
-</head>
-<body>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div class="kanban-board">
+      <div class="column-wrapper">
+        <div id="column1">
+          <div id="innerDivColumn1">
+            <table>
+              <tr>
+                <th id="todo">Att göra</th>
+              </tr>
+            </table>
+            <button id="addTaskBtn">
+              <ion-icon name="add-outline"></ion-icon>
+            </button>
+          </div>
+          <div id="inputDiv" draggable="true">
+            <input
+              type="text"
+              id="taskInput"
+              placeholder="Skriv en uppgift..."
+            />
+          </div>
+        </div>
+        <button id="addTaskCardBtn1">
+          <ion-icon name="add-outline"></ion-icon>
+        </button>
+      </div>
+      <div class="column-wrapper">
+        <div id="column2">
+          <table>
+            <tr>
+              <th id="inProgress">Pågående</th>
+            </tr>
+          </table>
+        </div>
+        <button id="addTaskCardBtn2">
+          <ion-icon name="add-outline"></ion-icon>
+        </button>
+      </div>
+      <div class="column-wrapper">
+        <div id="column3">
+          <table>
+            <tr>
+              <th id="toReview">Att granska</th>
+            </tr>
+          </table>
+        </div>
+        <button id="addTaskCardBtn3">
+          <ion-icon name="add-outline"></ion-icon>
+        </button>
+      </div>
+      <div class="column-wrapper">
+        <div id="column4">
+          <table>
+            <tr>
+              <th id="done">Klart</th>
+            </tr>
+          </table>
+        </div>
+        <button id="addTaskCardBtn4">
+          <ion-icon name="add-outline"></ion-icon>
+        </button>
+      </div>
+    </div>
+  </body>
 </html>
