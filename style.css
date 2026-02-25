@@ -22,15 +22,21 @@ body {
 }
 
 #column1 {
-    background-color: rgba(207, 84, 84, 0.8);
+    background-color: rgba(239, 122, 122, 0.8);
     padding: 10px;
     border-radius: 5px;
     height: 50vh;
 }
 #innerDivColumn1 {
+    background-color: #d9f164;
     display: flex;
     flex-direction: row;
     gap: 50px;
+    border-radius: 5px;
+    z-index: 1;
+    height: auto;
+    padding: 10px;
+    border-style: solid;
 }
 
 #taskBtn {
@@ -180,9 +186,15 @@ body {
 }
 
 #innerDivColumn2 {
+    background-color: #93f57b;
     display: flex;
     flex-direction: row;
     gap: 50px;
+    border-radius: 5px;
+    z-index: 1;
+    height: auto;
+    padding: 10px;
+    border-style: solid;
 }
 
 #constructOutline {
@@ -200,9 +212,15 @@ body {
 }
 
 #innerDivColumn3 {
+    background-color: #43ebc6;
     display: flex;
     flex-direction: row;
     gap: 50px;
+    border-radius: 5px;
+    z-index: 1;
+    height: auto;
+    padding: 10px;
+    border-style: solid;
 }
 
 #eyeOutline {
@@ -220,9 +238,15 @@ body {
 }
 
 #innerDivColumn4 {
+    background-color: #47ef98;
     display: flex;
     flex-direction: row;
     gap: 50px;
+    border-radius: 5px;
+    z-index: 1;
+    height: auto;
+    padding: 10px;
+    border-style: solid;
 }
 
 #checkmarkOutline {

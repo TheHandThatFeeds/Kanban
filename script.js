@@ -18,9 +18,27 @@ loadIonicons();
 const addBtn = document.querySelector('#taskBtn')
 const inputDiv = document.querySelector('#inputDiv')
 
+// This function will be called when the "Lägg till" button is clicked. 
 function taskBtn() {
-  const existingTitle = document.querySelector('#taskTitle');
-  const existingDescription = document.querySelector('#taskDescription');
+  const taskTitle = document.querySelector('#taskTitle');
+  const taskDescription = document.querySelector('#taskDescription');
+
+  // If inputs do not exist yet, create them
+  if (!taskTitle || !taskDescription) {
+    createInputFields();
+    return;
+  }
+
+  const titleText = taskTitle.value.trim();
+  const descText = taskDescription.value.trim();
+
+  if (titleText === '') {
+    alert('Var god och skriv en uppgift...');
+    return;
+  }
+
+  createTaskElement(titleText, descText);
+  removeInputFields();
 }
 
 function createInputFields() {
@@ -34,13 +52,13 @@ function createInputFields() {
   const taskDescription = document.createElement('textarea');
   taskDescription.id = 'taskDescription';
   taskDescription.placeholder = 'Beskrivning...';
-  taskDescription.rows = 3;
+  taskDescription.rows = 3; // Set number of rows for the textarea
   
   // Create submit button
   const submitBtn = document.createElement('button');
   submitBtn.id = 'submitTaskBtn';
   submitBtn.textContent = 'Lägg till';
-  submitBtn.onclick = taskBtn;
+  submitBtn.onclick = taskBtn; // Call taskBtn again to handle submission after creating input fields
   
   // Create cancel button
   const cancelBtn = document.createElement('button');
@@ -48,13 +66,13 @@ function createInputFields() {
   cancelBtn.textContent = 'Avbryt';
   cancelBtn.onclick = removeInputFields;
   
-  // Create form container
-  const formContainer = document.createElement('div');
+  // Create form container wich is a div to hold the input fields and buttons
+  const formContainer = document.createElement('div'); // Located in the taskBtn function, this creates a new div element that will serve as a container for the input fields and buttons
   formContainer.id = 'taskFormContainer';
-  formContainer.appendChild(taskTitle);
-  formContainer.appendChild(taskDescription);
-  formContainer.appendChild(submitBtn);
-  formContainer.appendChild(cancelBtn);
+  formContainer.appendChild(taskTitle); // Add the title input to the form container
+  formContainer.appendChild(taskDescription); // Add the description textarea to the form container
+  formContainer.appendChild(submitBtn); // Add the submit button to the form container
+  formContainer.appendChild(cancelBtn); // Add the cancel button to the form container
   
   // Insert at the beginning of inputDiv
   inputDiv.insertBefore(formContainer, inputDiv.firstChild);
@@ -99,7 +117,7 @@ function createTaskElement(titleText, descText) {
   }
   
   // Add drag event listeners
-  taskCard.addEventListener('dragstart', handleDragStart);
+  taskCard.addEventListener('dragstart', handleDragStart); 
   taskCard.addEventListener('dragend', handleDragEnd);
   
   // Append the task card to the container
@@ -109,25 +127,10 @@ function createTaskElement(titleText, descText) {
 // Drag and drop event handlers
 function handleDragStart(e) {
   this.style.opacity = '0.4';
-  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.effectAllowed = 'move'; 
   e.dataTransfer.setData('text/html', this.innerHTML);
 }
 
 function handleDragEnd(e) {
   this.style.opacity = '1';
 }
-// If input fields don't exist, create them
-/* if (!existingTitle) {
-  createInputFields();
-} else {
-  // If input fields exist, get their values and create task
-  const titleText = existingTitle.value.trim();
-  const descText = existingDescription.value.trim();
-  
-  if (titleText !== '') {
-    createTaskElement(titleText, descText);
-    removeInputFields(); // Remove the input fields after creating task
-  } else {
-    alert('Var god och skriv en uppgift...');
-  }
-} */
