@@ -14,3 +14,7 @@ function loadIonicons() {
 }
 
 loadIonicons();
+
+const addBtn = document.querySelector('taskBtn')
+const addInput = document.querySelector('taskInput')
+const addList = document.querySelector('taskList')

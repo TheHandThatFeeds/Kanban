@@ -33,7 +33,7 @@ body {
     gap: 50px;
 }
 
-#addTaskBtn {
+#taskBtn {
     background-color: #4CAF50;
     color: white;
     border: none;
