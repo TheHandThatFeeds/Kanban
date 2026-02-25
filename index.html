@@ -24,7 +24,7 @@
           </button>
         </div>
         <div id="inputDiv" draggable="true">
-          <input type="text" id="taskInput" placeholder="Skriv en uppgift..." />
+          <!--<input type="text" id="taskInput" placeholder="Skriv en uppgift..." />-->
           <ul id="tasklist">
 
           </ul>
@@ -36,11 +36,14 @@
     </div>
     <div class="column-wrapper">
       <div id="column2">
-        <table>
-          <tr>
-            <th id="inProgress">Pågående</th>
-          </tr>
-        </table>
+        <div id="innerDivColumn2">
+          <table>
+            <tr>
+              <th id="inProgress">Pågående</th>
+            </tr>
+          </table>
+          <ion-icon id="constructOutline" name="construct-outline"></ion-icon>
+        </div>
       </div>
       <button id="addTaskCardBtn2">
         <ion-icon name="add-outline"></ion-icon>
@@ -63,11 +66,14 @@
     </div>
     <div class="column-wrapper">
       <div id="column4">
-        <table>
-          <tr>
-            <th id="done">Klart</th>
-          </tr>
-        </table>
+        <div id="innerDivColumn4">
+          <table>
+            <tr>
+              <th id="done">Klart</th>
+            </tr>
+          </table>
+          <ion-icon id="checkmarkOutline" name="checkmark-circle-outline"></ion-icon>
+        </div>
       </div>
       <button id="addTaskCardBtn4">
         <ion-icon name="add-outline"></ion-icon>

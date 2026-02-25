@@ -16,5 +16,24 @@ function loadIonicons() {
 loadIonicons();
 
 const addBtn = document.querySelector('taskBtn')
-const addInput = document.querySelector('taskInput')
+//const addInput = document.querySelector('taskInput')
 const addList = document.querySelector('taskList')
+
+function taskBtn() {
+  const taskInput = document.createInputElement('input'); // Create a new input element for the task input field.
+  const taskText = taskInput.value.trim(); // Get the value from the input filed and remove any white spaces.
+  if (taskText !== '') { // Check inf the input is not empty. 
+      createTaskElement(taskText); // This function will create will create a new task item based on the value from the input field. 
+      taskInput.value = ''; // clear the input field after creating the task item.
+  } else {
+      alert('Var god och skriv en uppgift...'); // If the input is empty, alert the user to enter a task. 
+  }
+}
+
+addBtn.addEventListener('click', taskBtn); // A task item will be created based on the value from the input field once the add button is clicked.
+
+function createTaskElement(taskText) {
+  const listItem = document.createElement('li'); // Create a new list item element to repreent the task.
+  listItem.textContent = taskText; // Set the text content of the list item to taskText wich is the value fron the input field. 
+  addList.appendChild(listItem); // Append the new list item to the task list.
+}

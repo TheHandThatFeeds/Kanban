@@ -61,6 +61,19 @@ body {
     height: 50vh;
 }
 
+#innerDivColumn2 {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+#constructOutline {
+    color: rgb(6, 5, 6);
+    border: none;
+    padding-top: 5px;
+    margin-left: auto;
+}
+
 #column3 {
     background-color: rgba(84, 207, 107, 0.8);
     padding: 10px;
@@ -75,7 +88,7 @@ body {
 }
 
 #eyeOutline {
-    color: rgb(120, 145, 226);
+    color: rgb(6, 8, 15);
     border: none;
     padding-top: 5px;
     margin-left: auto;
@@ -86,6 +99,19 @@ body {
     padding: 10px;
     border-radius: 5px;
     height: 50vh;
+}
+
+#innerDivColumn4 {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+#checkmarkOutline {
+    color: rgb(16, 1, 1);
+    border: none;
+    padding-top: 5px;
+    margin-left: auto;
 }
 
 #addTaskCardBtn1, #addTaskCardBtn2, #addTaskCardBtn3, #addTaskCardBtn4 {
