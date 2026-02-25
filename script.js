@@ -15,25 +15,119 @@ function loadIonicons() {
 
 loadIonicons();
 
-const addBtn = document.querySelector('taskBtn')
-//const addInput = document.querySelector('taskInput')
-const addList = document.querySelector('taskList')
+const addBtn = document.querySelector('#taskBtn')
+const inputDiv = document.querySelector('#inputDiv')
 
 function taskBtn() {
-  const taskInput = document.createInputElement('input'); // Create a new input element for the task input field.
-  const taskText = taskInput.value.trim(); // Get the value from the input filed and remove any white spaces.
-  if (taskText !== '') { // Check inf the input is not empty. 
-      createTaskElement(taskText); // This function will create will create a new task item based on the value from the input field. 
-      taskInput.value = ''; // clear the input field after creating the task item.
-  } else {
-      alert('Var god och skriv en uppgift...'); // If the input is empty, alert the user to enter a task. 
+  const existingTitle = document.querySelector('#taskTitle');
+  const existingDescription = document.querySelector('#taskDescription');
+}
+
+function createInputFields() {
+  // Create title input
+  const taskTitle = document.createElement('input');
+  taskTitle.type = 'text';
+  taskTitle.id = 'taskTitle';
+  taskTitle.placeholder = 'Uppgiftens titel...';
+  
+  // Create description textarea
+  const taskDescription = document.createElement('textarea');
+  taskDescription.id = 'taskDescription';
+  taskDescription.placeholder = 'Beskrivning...';
+  taskDescription.rows = 3;
+  
+  // Create submit button
+  const submitBtn = document.createElement('button');
+  submitBtn.id = 'submitTaskBtn';
+  submitBtn.textContent = 'Lägg till';
+  submitBtn.onclick = taskBtn;
+  
+  // Create cancel button
+  const cancelBtn = document.createElement('button');
+  cancelBtn.id = 'cancelTaskBtn';
+  cancelBtn.textContent = 'Avbryt';
+  cancelBtn.onclick = removeInputFields;
+  
+  // Create form container
+  const formContainer = document.createElement('div');
+  formContainer.id = 'taskFormContainer';
+  formContainer.appendChild(taskTitle);
+  formContainer.appendChild(taskDescription);
+  formContainer.appendChild(submitBtn);
+  formContainer.appendChild(cancelBtn);
+  
+  // Insert at the beginning of inputDiv
+  inputDiv.insertBefore(formContainer, inputDiv.firstChild);
+}
+
+function removeInputFields() {
+  const formContainer = document.querySelector('#taskFormContainer');
+  if (formContainer) {
+    formContainer.remove();
   }
 }
 
-addBtn.addEventListener('click', taskBtn); // A task item will be created based on the value from the input field once the add button is clicked.
+addBtn.addEventListener('click', taskBtn);
 
-function createTaskElement(taskText) {
-  const listItem = document.createElement('li'); // Create a new list item element to repreent the task.
-  listItem.textContent = taskText; // Set the text content of the list item to taskText wich is the value fron the input field. 
-  addList.appendChild(listItem); // Append the new list item to the task list.
+function createTaskElement(titleText, descText) {
+  // Create a draggable task card
+  const taskCard = document.createElement('div');
+  taskCard.className = 'task-card';
+  taskCard.draggable = true; // Make the div draggable
+  
+  // Create delete button
+  const deleteBtn = document.createElement('button');
+  deleteBtn.className = 'delete-task-btn';
+  deleteBtn.innerHTML = '<ion-icon name="close-outline"></ion-icon>';
+  deleteBtn.onclick = function() {
+    taskCard.remove(); // Remove the task card when delete button is clicked
+  };
+  taskCard.appendChild(deleteBtn);
+  
+  // Create title element
+  const title = document.createElement('h3');
+  title.className = 'task-title';
+  title.textContent = titleText;
+  taskCard.appendChild(title);
+  
+  // Create description element if there's text
+  if (descText !== '') {
+    const description = document.createElement('p');
+    description.className = 'task-description';
+    description.textContent = descText;
+    taskCard.appendChild(description);
+  }
+  
+  // Add drag event listeners
+  taskCard.addEventListener('dragstart', handleDragStart);
+  taskCard.addEventListener('dragend', handleDragEnd);
+  
+  // Append the task card to the container
+  inputDiv.appendChild(taskCard);
 }
+
+// Drag and drop event handlers
+function handleDragStart(e) {
+  this.style.opacity = '0.4';
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/html', this.innerHTML);
+}
+
+function handleDragEnd(e) {
+  this.style.opacity = '1';
+}
+// If input fields don't exist, create them
+/* if (!existingTitle) {
+  createInputFields();
+} else {
+  // If input fields exist, get their values and create task
+  const titleText = existingTitle.value.trim();
+  const descText = existingDescription.value.trim();
+  
+  if (titleText !== '') {
+    createTaskElement(titleText, descText);
+    removeInputFields(); // Remove the input fields after creating task
+  } else {
+    alert('Var god och skriv en uppgift...');
+  }
+} */
