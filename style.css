@@ -12,18 +12,12 @@ body {
     border-radius: 10px;
 }
 
-.column-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    flex: 1;
-}
-
 #column1 {
     background-color: rgba(239, 122, 122, 0.8);
     padding: 10px;
     border-radius: 5px;
     height: 50vh;
+    flex:1;
 }
 #innerDivColumn1 {
     background-color: #d9f164;
@@ -181,6 +175,7 @@ body {
     padding: 10px;
     border-radius: 5px;
     height: 50vh;
+    flex:1;
 }
 
 #innerDivColumn2 {
@@ -207,6 +202,7 @@ body {
     padding: 10px;
     border-radius: 5px;
     height: 50vh;
+    flex:1;
 }
 
 #innerDivColumn3 {
@@ -233,6 +229,7 @@ body {
     padding: 10px;
     border-radius: 5px;
     height: 50vh;
+    flex:1;
 }
 
 #innerDivColumn4 {
@@ -254,10 +251,4 @@ body {
     margin-left: auto;
 }
 
-#addTaskCardBtn1, #addTaskCardBtn2, #addTaskCardBtn3, #addTaskCardBtn4 {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+
