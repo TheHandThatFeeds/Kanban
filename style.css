@@ -1,8 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f7eef5;
-    margin: 0;
-    padding: 20px;
+    background: rgba(228, 239, 228, 0.8);
 }
 .kanban-board {
     display: flex;
@@ -205,14 +203,14 @@ body {
 }
 
 #column3 {
-    background-color: rgba(84, 207, 107, 0.8);
+    background-color: rgba(84, 201, 207, 0.8);
     padding: 10px;
     border-radius: 5px;
     height: 50vh;
 }
 
 #innerDivColumn3 {
-    background-color: #43ebc6;
+    background-color: #daeb43;
     display: flex;
     flex-direction: row;
     gap: 50px;

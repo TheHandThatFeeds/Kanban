@@ -85,8 +85,9 @@ function removeInputFields() {
   }
 }
 
-addBtn.addEventListener('click', taskBtn);
+taskBtn.addEventListener('click', taskBtn);
 
+// This function creates a new task card element with the given title and description, and adds it to the inputDiv container. It also sets up the necessary event listeners for dragging and deleting the task card.
 function createTaskElement(titleText, descText) {
   // Create a draggable task card
   const taskCard = document.createElement('div');
@@ -96,7 +97,7 @@ function createTaskElement(titleText, descText) {
   // Create delete button
   const deleteBtn = document.createElement('button');
   deleteBtn.className = 'delete-task-btn';
-  deleteBtn.innerHTML = '<ion-icon name="close-outline"></ion-icon>';
+  deleteBtn.innerHTML = '<ion-icon name="close-outline"></ion-icon>'; 
   deleteBtn.onclick = function() {
     taskCard.remove(); // Remove the task card when delete button is clicked
   };
@@ -125,10 +126,10 @@ function createTaskElement(titleText, descText) {
 }
 
 // Drag and drop event handlers
-function handleDragStart(e) {
+function handleDragStart(e) { 
   this.style.opacity = '0.4';
   e.dataTransfer.effectAllowed = 'move'; 
-  e.dataTransfer.setData('text/html', this.innerHTML);
+  e.dataTransfer.setData('text/html', this.innerHTML); 
 }
 
 function handleDragEnd(e) {
