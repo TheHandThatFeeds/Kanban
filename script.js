@@ -85,7 +85,7 @@ function removeInputFields() {
   }
 }
 
-taskBtn.addEventListener('click', taskBtn);
+addBtn.addEventListener('click', taskBtn);
 
 // This function creates a new task card element with the given title and description, and adds it to the inputDiv container. It also sets up the necessary event listeners for dragging and deleting the task card.
 function createTaskElement(titleText, descText) {
