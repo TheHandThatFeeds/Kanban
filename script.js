@@ -129,7 +129,7 @@ function createTaskElement(titleText, descText) {
 function handleDragStart(e) { 
   this.style.opacity = '0.4';
   e.dataTransfer.effectAllowed = 'move'; 
-  e.dataTransfer.setData('text/html', this.innerHTML); 
+  e.dataTransfer.setData('text/html', this.innerHTML); // Store the HTML content of the dragged element in the dataTransfer object, which allows it to be accessed during the drop event to move the task card to a new location
 }
 
 function handleDragEnd(e) {
