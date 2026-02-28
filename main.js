@@ -1,5 +1,5 @@
-import { attachTrashControls } from "./modules/delete.mjs";
-import { attachEditControls } from "./modules/edit.mjs";
+import { attachTrashControls } from "./delete.mjs";
+import { attachEditControls } from "./edit.mjs";
 
 const addBtn = document.querySelector('#taskBtn')
 const inputDiv = document.querySelector('#inputDiv')
