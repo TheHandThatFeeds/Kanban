@@ -99,6 +99,7 @@ body {
     align-items: center;
 }
 
+/* är detta en upprening av kod? */
 #innerDivColumn1,
 #innerDivColumn2,
 #innerDivColumn3,
@@ -154,11 +155,14 @@ body {
     background-color: white;
     border-radius: 8px;
     padding: 44px 12px 12px;
-margin-bottom: 10px;
+    margin-bottom: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     cursor: grab;
     transition: box-shadow 0.2s, transform 0.2s;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .task-card::before {
@@ -291,6 +295,34 @@ margin-bottom: 10px;
     font-size: 14px;
     color: #666;
     line-height: 1.4;
+}
+
+.task-timestamp {
+    margin: 0;
+    font-size: 12px;
+    color: #999;
+    font-style: italic;
+}
+
+.task-footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 4px;
+    padding-top: 8px;
+    border-top: 1px solid #eee;
+    width: 100%;
+}
+
+.task-footer button {
+    margin: 0;
+    padding: 4px 8px;
+}
+
+.task-card > button {
+    display: inline-flex;
+    align-self: flex-start;
+    margin: 0;
 }
 
 .task-title,

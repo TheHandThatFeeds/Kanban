@@ -1,3 +1,6 @@
+// This module handles the functionality related to moving task cards to a "trash" 
+// area, restoring them from the trash, and permanently deleting them. 
+// It also provides controls for these actions on each task card.
 function getTrashList() {
 return document.getElementById("trashList");
 }
@@ -13,6 +16,11 @@ taskCard.classList.add("in-trash");
 trashList.appendChild(taskCard);
 }
 
+// This function is called when the "Lägg till" button is clicked. 
+// It checks if the input fields for the task title and description already exist. 
+// If they do, it retrieves their values, validates that the title is not empty, 
+// and then creates a new task card with the provided title and description. 
+// After creating the task card, it removes the input fields from the DOM.
 export function restoreFromTrash(taskCard) {
 const prevParentId = taskCard.dataset.prevParentId;
 const prevParent = prevParentId ? document.getElementById(prevParentId) : null;

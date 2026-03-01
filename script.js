@@ -1,5 +1,5 @@
-import { attachTrashControls } from "./delete.mjs";
-import { attachEditControls } from "./edit.mjs";
+import { attachTrashControls } from "./modules/file.js/delete.mjs";
+import { attachEditControls } from "./modules/file.js/edit.mjs";
 
 const addBtn = document.querySelector('#taskBtn')
 const inputDiv = document.querySelector('#inputDiv')
@@ -64,7 +64,6 @@ function createInputFields() {
   inputDiv.insertBefore(formContainer, inputDiv.firstChild);
 }
 
-// This function removes the input fields for creating a new task when the "Avbryt" button is clicked or after a task is successfully created.
 function removeInputFields() {
   const formContainer = document.querySelector('#taskFormContainer');
   if (formContainer) {
@@ -81,9 +80,6 @@ function createTaskElement(titleText, descText) {
   taskCard.className = 'task-card';
   taskCard.draggable = true; // Make the div draggable
 
- // Create delete button
-attachTrashControls(taskCard);
-
   // Create title element
 const title = document.createElement("h3");
   title.className = "task-title";
@@ -95,6 +91,22 @@ const description = document.createElement("p");
   description.className = "task-description";
   description.textContent = descText; // kan vara tomt
   taskCard.appendChild(description);
+
+  // Create footer container for timestamp and buttons
+  const footer = document.createElement("div");
+  footer.className = "task-footer";
+  
+  // Create timestamp element
+  const timestamp = document.createElement("span");
+  timestamp.className = "task-timestamp";
+  const now = new Date();
+  timestamp.textContent = now.toLocaleString('sv-SE'); // Swedish date/time format
+  footer.appendChild(timestamp);
+  
+  taskCard.appendChild(footer);
+
+ // Create delete button
+attachTrashControls(taskCard);
 
  // Create edit button
 attachEditControls(taskCard, title, description)
