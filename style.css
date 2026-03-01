@@ -190,9 +190,6 @@ body {
 }
 
 .delete-task-btn {
-    position: absolute;
-    top: 8px;
-    right: 8px;
     background-color: transparent;
     border: none;
     color: #999;
@@ -215,10 +212,6 @@ body {
 }
 
 .edit-task-btn {
-    position: absolute;
-    top: 8px;
-    right: 36px;
-    /* bredvid delete-knappen */
     background-color: transparent;
     border: none;
     color: #999;
@@ -312,6 +305,10 @@ body {
     padding-top: 8px;
     border-top: 1px solid #eee;
     width: 100%;
+}
+
+.task-footer .task-timestamp {
+    margin-right: auto;
 }
 
 .task-footer button {
@@ -470,9 +467,6 @@ body {
 
 .permanent-delete-btn {
     display: none;
-    position: absolute;
-    top: 8px;
-    right: 36px;
     background: transparent;
     border: none;
     color: #999;

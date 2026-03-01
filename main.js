@@ -81,9 +81,6 @@ function createTaskElement(titleText, descText) {
   taskCard.className = 'task-card';
   taskCard.draggable = true; // Make the div draggable
 
- // Create delete button
-attachTrashControls(taskCard);
-
   // Create title element
 const title = document.createElement("h3");
   title.className = "task-title";
@@ -96,8 +93,21 @@ const description = document.createElement("p");
   description.textContent = descText; // kan vara tomt
   taskCard.appendChild(description);
 
+  const footer = document.createElement("div");
+  footer.className = "task-footer";
+
+  const timestamp = document.createElement("span");
+  timestamp.className = "task-timestamp";
+  timestamp.textContent = new Date().toLocaleString("sv-SE");
+  footer.appendChild(timestamp);
+
+  taskCard.appendChild(footer);
+
  // Create edit button
-attachEditControls(taskCard, title, description)
+attachEditControls(taskCard, title, description, footer)
+
+ // Create delete button
+attachTrashControls(taskCard, footer);
 
   // Add drag event listeners
   taskCard.addEventListener('dragstart', handleDragStart);
@@ -108,10 +118,12 @@ attachEditControls(taskCard, title, description)
 }
 
 // Drag and drop event handlers
+// This line stores the HTML content of the dragged element (the task card) in the dataTransfer object. 
+// This allows the content to be accessed during the drop event, enabling the task card to be moved to a new location on the board.
 function handleDragStart(e) {
   this.style.opacity = '0.4';
   e.dataTransfer.effectAllowed = 'move'; 
-  e.dataTransfer.setData('text/html', this.innerHTML); // Store the HTML content of the dragged element in the dataTransfer object, which allows it to be accessed during the drop event to move the task card to a new location
+  e.dataTransfer.setData('text/html', this.innerHTML);
 }
 
 function handleDragEnd(e) {

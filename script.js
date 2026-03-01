@@ -60,10 +60,11 @@ function createInputFields() {
   formContainer.appendChild(submitBtn); // Add the submit button to the form container
   formContainer.appendChild(cancelBtn); // Add the cancel button to the form container
 
-  // Insert at the beginning of inputDiv
+  // Insert the form container at the beginning of inputDiv
   inputDiv.insertBefore(formContainer, inputDiv.firstChild);
 }
 
+// This function removes the input fields for creating a new task from the DOM.
 function removeInputFields() {
   const formContainer = document.querySelector('#taskFormContainer');
   if (formContainer) {
@@ -73,7 +74,9 @@ function removeInputFields() {
 
 addBtn.addEventListener('click', taskBtn);
 
-// This function creates a new task card element with the given title and description, and adds it to the inputDiv container. It also sets up the necessary event listeners for dragging and deleting the task card.
+// This function creates a new task card element with the given title and description, 
+// and adds it to the inputDiv container. 
+// It also sets up the necessary event listeners for dragging and deleting the task card.
 function createTaskElement(titleText, descText) {
   // Create a draggable task card
   const taskCard = document.createElement('div');
@@ -122,10 +125,12 @@ attachEditControls(taskCard, title, description)
 // Drag and drop event handlers
 function handleDragStart(e) {
   this.style.opacity = '0.4';
+  // Store the HTML content of the dragged element in the dataTransfer object,
+  // which allows it to be accessed during the drop event to move the task card to a new location 
   e.dataTransfer.effectAllowed = 'move'; 
-  e.dataTransfer.setData('text/html', this.innerHTML); // Store the HTML content of the dragged element in the dataTransfer object, which allows it to be accessed during the drop event to move the task card to a new location
+  e.dataTransfer.setData('text/html', this.innerHTML); 
 }
-
 function handleDragEnd(e) {
   this.style.opacity = '1';
 }
+  

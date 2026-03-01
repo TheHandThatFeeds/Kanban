@@ -38,8 +38,12 @@ if (confirm("Är du säker att du vill radera kortet permanent?")) {
 }
 }
 
-export function attachTrashControls(taskCard) {
-  // Delete / restore button
+// This function creates the input fields for adding a new task, along with "Lägg till" and "Avbryt" buttons. 
+// It appends these elements to a form container and inserts the container into the DOM. 
+// The "Lägg till" button is set up to call the taskBtn function again to handle the submission of the new task, while the "Avbryt" button calls the removeInputFields function to remove the input fields from the DOM.
+export function attachTrashControls(taskCard, controlsContainer = taskCard) {
+  // Delete 
+  // Restore button
 const deleteBtn = document.createElement("button");
 deleteBtn.className = "delete-task-btn";
 deleteBtn.innerHTML = '<ion-icon name="close-outline"></ion-icon>';
@@ -56,7 +60,7 @@ if (taskCard.classList.contains("in-trash")) {
     }
 });
 
-taskCard.appendChild(deleteBtn);
+controlsContainer.appendChild(deleteBtn);
 
   // Permanent delete button
 const permanentBtn = document.createElement("button");
@@ -69,5 +73,5 @@ permanentBtn.addEventListener("click", (e) => {
     deleteForever(taskCard);
 });
 
-taskCard.appendChild(permanentBtn);
+controlsContainer.appendChild(permanentBtn);
 }

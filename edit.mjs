@@ -1,4 +1,4 @@
-export function attachEditControls(taskCard, titleEl, descEl) {
+export function attachEditControls(taskCard, titleEl, descEl, controlsContainer = taskCard) {
 const editBtn = document.createElement("button");
 editBtn.className = "edit-task-btn";
 editBtn.innerHTML = '<ion-icon name="pencil-outline"></ion-icon>';
@@ -64,5 +64,5 @@ descEl.style.display = "";
     });
 });
 
-taskCard.appendChild(editBtn);
+controlsContainer.appendChild(editBtn);
 }
