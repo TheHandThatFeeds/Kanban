@@ -1,75 +1,91 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
-    <title>Document</title>
-  </head>
 
-  <body>
-    <div class="kanban-board">
-      <div class="column-wrapper">
-        <div id="column1">
-          <div id="innerDivColumn1">
-            <table>
-              <tr>
-                <th id="todo">Att göra</th>
-              </tr>
-            </table>
-            <button id="addTaskBtn">
-              <ion-icon name="add-outline"></ion-icon>
-            </button>
-          </div>
-          <div id="inputDiv" draggable="true">
-            <input
-              type="text"
-              id="taskInput"
-              placeholder="Skriv en uppgift..."
-            />
-          </div>
-        </div>
-        <button id="addTaskCardBtn1">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+  <script type="module" src="script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <title>Att Göra Lista</title>
+</head>
+
+
+<body>
+  <nav class="navbar">
+    <ul>
+      <li>Elvis</li>
+      <li>Ronaldo</li>
+      <li>Maria</li>
+      <li>Linda</li>
+    </ul>
+  </nav>
+  <div class="kanban-board">
+    <div id="column1">
+      <div id="innerDivColumn1">
+        <table>
+          <tr>
+            <th id="todo">Att göra</th>
+          </tr>
+        </table>
+        <button id="taskBtn">
           <ion-icon name="add-outline"></ion-icon>
         </button>
       </div>
-      <div class="column-wrapper">
-        <div id="column2">
-          <table>
-            <tr>
-              <th id="inProgress">Pågående</th>
-            </tr>
-          </table>
-        </div>
-        <button id="addTaskCardBtn2">
-          <ion-icon name="add-outline"></ion-icon>
-        </button>
-      </div>
-      <div class="column-wrapper">
-        <div id="column3">
-          <table>
-            <tr>
-              <th id="toReview">Att granska</th>
-            </tr>
-          </table>
-        </div>
-        <button id="addTaskCardBtn3">
-          <ion-icon name="add-outline"></ion-icon>
-        </button>
-      </div>
-      <div class="column-wrapper">
-        <div id="column4">
-          <table>
-            <tr>
-              <th id="done">Klart</th>
-            </tr>
-          </table>
-        </div>
-        <button id="addTaskCardBtn4">
-          <ion-icon name="add-outline"></ion-icon>
-        </button>
+      <div id="inputDiv">
       </div>
     </div>
-  </body>
+    <div id="column2">
+      <div id="innerDivColumn2">
+        <table>
+          <tr>
+            <th id="inProgress">Pågående</th>
+          </tr>
+        </table>
+        <ion-icon id="constructOutline" name="construct-outline"></ion-icon>
+      </div>
+    </div>
+    <div id="column3">
+      <div id="innerDivColumn3">
+        <table>
+          <tr>
+            <th id="toReview">Att granska</th>
+          </tr>
+        </table>
+        <ion-icon id="eyeOutline" name="eye-outline"></ion-icon>
+      </div>
+    </div>
+    <div id="column4">
+      <div id="innerDivColumn4">
+        <table>
+          <tr>
+            <th id="done">Klart</th>
+          </tr>
+        </table>
+        <ion-icon id="checkmarkOutline" name="checkmark-circle-outline"></ion-icon>
+      </div>
+    </div>
+  </div>
+
+<!-- TRASH / Borttagna -->
+<div class="trash-zone">
+  <div id="trashColumn">
+    <div id="innerDivTrash">
+      <table>
+        <tr>
+          <th id="trash">Borttagna</th>
+        </tr>
+      </table>
+
+      <ion-icon id="trashOutline" name="trash-outline"></ion-icon>
+    </div>
+
+    <!-- Hit flyttas kort -->
+    <div id="trashList" class="trash-list"></div>
+</body>
+
 </html>
