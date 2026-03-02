@@ -5,7 +5,10 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: rgba(228, 239, 228, 0.8);
+    background-image: url('img/14776.jpg');
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(228, 239, 228, 0.8);
     margin: 0;
     padding: 80px 20px 20px;
     min-height: 100vh;
