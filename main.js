@@ -1,14 +1,8 @@
-import { attachTrashControls } from "./modules/delete.mjs";
-import { attachEditControls } from "./modules/edit.mjs";
-import { setDragEvents, setupAllDroppableAreas, getDragVisual } from "./modules/move.mjs";
+import { attachTrashControls } from "./delete.mjs";
+import { attachEditControls } from "./edit.mjs";
 
 const addBtn = document.querySelector('#taskBtn')
 const inputDiv = document.querySelector('#inputDiv')
-
-// When the page loading the drop zones are setup and ready to use
-document.addEventListener('DOMContentLoaded', () => {
-  setupAllDroppableAreas();
-});
 
 // This function will be called when the "Lägg till" button is clicked.
 function taskBtn() {
@@ -66,11 +60,11 @@ function createInputFields() {
   formContainer.appendChild(submitBtn); // Add the submit button to the form container
   formContainer.appendChild(cancelBtn); // Add the cancel button to the form container
 
-  // Insert the form container at the beginning of inputDiv
+  // Insert at the beginning of inputDiv
   inputDiv.insertBefore(formContainer, inputDiv.firstChild);
 }
 
-// This function removes the input fields for creating a new task from the DOM.
+// This function removes the input fields for creating a new task when the "Avbryt" button is clicked or after a task is successfully created.
 function removeInputFields() {
   const formContainer = document.querySelector('#taskFormContainer');
   if (formContainer) {
@@ -80,9 +74,7 @@ function removeInputFields() {
 
 addBtn.addEventListener('click', taskBtn);
 
-// This function creates a new task card element with the given title and description,
-// and adds it to the inputDiv container.
-// It also sets up the necessary event listeners for dragging and deleting the task card.
+// This function creates a new task card element with the given title and description, and adds it to the inputDiv container. It also sets up the necessary event listeners for dragging and deleting the task card.
 function createTaskElement(titleText, descText) {
   // Create a draggable task card
   const taskCard = document.createElement('div');
@@ -101,44 +93,39 @@ const description = document.createElement("p");
   description.textContent = descText; // kan vara tomt
   taskCard.appendChild(description);
 
-  // Create footer container for timestamp and buttons
   const footer = document.createElement("div");
   footer.className = "task-footer";
 
-  // Create timestamp element
   const timestamp = document.createElement("span");
   timestamp.className = "task-timestamp";
-  const now = new Date();
-  timestamp.textContent = now.toLocaleString('sv-SE'); // Swedish date/time format
+  timestamp.textContent = new Date().toLocaleString("sv-SE");
   footer.appendChild(timestamp);
 
   taskCard.appendChild(footer);
 
- // Create delete button
-attachTrashControls(taskCard);
-
  // Create edit button
-attachEditControls(taskCard, title, description)
+attachEditControls(taskCard, title, description, footer)
 
-// Setup drag and drop elements using move.mjs
-setDragEvents(taskCard);
-getDragVisual(taskCard);
+ // Create delete button
+attachTrashControls(taskCard, footer);
 
-  // // Add drag event listeners
-  // taskCard.addEventListener('dragstart', handleDragStart);
-  // taskCard.addEventListener('dragend', handleDragEnd);
+  // Add drag event listeners
+  taskCard.addEventListener('dragstart', handleDragStart);
+  taskCard.addEventListener('dragend', handleDragEnd);
 
   // Append the task card to the container
   inputDiv.appendChild(taskCard);
 }
 
-// // Drag and drop event handlers
-// function handleDragStart(e) {
-//   this.style.opacity = '0.4';
-//   e.dataTransfer.effectAllowed = 'move';
-//   e.dataTransfer.setData('text/html', this.innerHTML);
-// }
+// Drag and drop event handlers
+// This line stores the HTML content of the dragged element (the task card) in the dataTransfer object. 
+// This allows the content to be accessed during the drop event, enabling the task card to be moved to a new location on the board.
+function handleDragStart(e) {
+  this.style.opacity = '0.4';
+  e.dataTransfer.effectAllowed = 'move'; 
+  e.dataTransfer.setData('text/html', this.innerHTML);
+}
 
-// function handleDragEnd(e) {
-//   this.style.opacity = '1';
-// }
+function handleDragEnd(e) {
+  this.style.opacity = '1';
+}
