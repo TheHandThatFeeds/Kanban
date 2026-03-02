@@ -1,8 +1,14 @@
 import { attachTrashControls } from "./modules/delete.mjs";
 import { attachEditControls } from "./modules/edit.mjs";
+import { setDragEvents, setupAllDroppableAreas, getDragVisual } from "./modules/move.mjs";
 
 const addBtn = document.querySelector('#taskBtn')
 const inputDiv = document.querySelector('#inputDiv')
+
+// When the page loading the drop zones are setup and ready to use
+document.addEventListener('DOMContentLoaded', () => {
+  setupAllDroppableAreas();
+});
 
 // This function will be called when the "Lägg till" button is clicked.
 function taskBtn() {
@@ -98,21 +104,25 @@ const description = document.createElement("p");
  // Create edit button
 attachEditControls(taskCard, title, description)
 
-  // Add drag event listeners
-  taskCard.addEventListener('dragstart', handleDragStart);
-  taskCard.addEventListener('dragend', handleDragEnd);
+// Setup drag and drop elements using move.mjs
+setDragEvents(taskCard);
+getDragVisual(taskCard);
+
+  // // Add drag event listeners
+  // taskCard.addEventListener('dragstart', handleDragStart);
+  // taskCard.addEventListener('dragend', handleDragEnd);
 
   // Append the task card to the container
   inputDiv.appendChild(taskCard);
 }
 
-// Drag and drop event handlers
-function handleDragStart(e) {
-  this.style.opacity = '0.4';
-  e.dataTransfer.effectAllowed = 'move';
-  e.dataTransfer.setData('text/html', this.innerHTML);
-}
+// // Drag and drop event handlers
+// function handleDragStart(e) {
+//   this.style.opacity = '0.4';
+//   e.dataTransfer.effectAllowed = 'move';
+//   e.dataTransfer.setData('text/html', this.innerHTML);
+// }
 
-function handleDragEnd(e) {
-  this.style.opacity = '1';
-}
+// function handleDragEnd(e) {
+//   this.style.opacity = '1';
+// }
