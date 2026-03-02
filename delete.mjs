@@ -60,7 +60,8 @@ emptyTrashBtn.addEventListener('click', emptyTrash);
 
 // This function creates the input fields for adding a new task, along with "Lägg till" and "Avbryt" buttons. 
 // It appends these elements to a form container and inserts the container into the DOM. 
-// The "Lägg till" button is set up to call the taskBtn function again to handle the submission of the new task, while the "Avbryt" button calls the removeInputFields function to remove the input fields from the DOM.
+// The "Lägg till" button is set up to call the taskBtn function again to handle the submission of the new task, 
+// while the "Avbryt" button calls the removeInputFields function to remove the input fields from the DOM.
 export function attachTrashControls(taskCard, controlsContainer = taskCard) {
   // Delete 
   // Restore button
