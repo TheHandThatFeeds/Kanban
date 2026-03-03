@@ -91,7 +91,7 @@ addButtons.forEach((button) => { // Loop through each button with id "taskBtn"
   const column = button.closest('div[id^="column"]'); // Find the closest parent div with an id that starts with "column"
   const inputDiv = column?.querySelector('#inputDiv'); // Find the inputDiv within that column
 
-  if (!inputDiv) {
+  if (!inputDiv) { 
     return;
   }
 
