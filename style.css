@@ -121,7 +121,7 @@ body {
     padding: 0;
     border: none;
     border-radius: 50%;
-    cursor: crosshair;
+    cursor: pointer;
     background-color: transparent;
     color: rgb(16, 16, 16);
     display: flex;
@@ -172,7 +172,7 @@ body {
 }
 
 .task-card:active {
-    cursor: grabbing;
+    cursor: move;
 }
 
 .task-card:has(.edit-form) {
@@ -384,7 +384,7 @@ body {
     margin: 0 auto;
     padding: 20px;
     border-radius: 10px;
-    background: transparent;
+    background-color: transparent;
 }
 
 #trashColumn {
@@ -533,7 +533,7 @@ body {
     text-align: center;
     padding: 20px 10px;
     font-size: 14px;
-    color: #d40e0e;
+    color: white;
     background-color: transparent;
     width: 100%;
 }
