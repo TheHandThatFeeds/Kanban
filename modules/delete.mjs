@@ -63,36 +63,26 @@ emptyTrashBtn.addEventListener('click', emptyTrash);
 // The "Lägg till" button is set up to call the taskBtn function again to handle the submission of the new task, 
 // while the "Avbryt" button calls the removeInputFields function to remove the input fields from the DOM.
 export function attachTrashControls(taskCard, controlsContainer = taskCard) {
-  // Delete 
-  // Restore button
-const deleteBtn = document.createElement("button");
-deleteBtn.className = "delete-task-btn";
-deleteBtn.innerHTML = '<ion-icon name="close-outline"></ion-icon>';
+  const footer = taskCard.querySelector(".task-footer");
+  const targetContainer = footer || controlsContainer;
 
-deleteBtn.addEventListener("click", (e) => {
+  // Delete / Restore button
+  const deleteBtn = document.createElement("button");
+  deleteBtn.className = "delete-task-btn";
+  deleteBtn.setAttribute("aria-label", "Radera");
+  deleteBtn.innerHTML = '<ion-icon name="close-outline"></ion-icon>';
+
+  deleteBtn.addEventListener("click", (e) => {
     e.stopPropagation();
 
-if (taskCard.classList.contains("in-trash")) {
-    restoreFromTrash(taskCard);
-    deleteBtn.innerHTML = '<ion-icon name="close-outline"></ion-icon>';
+    if (taskCard.classList.contains("in-trash")) {
+      restoreFromTrash(taskCard);
+      deleteBtn.innerHTML = '<ion-icon name="close-outline"></ion-icon>';
     } else {
-    moveToTrash(taskCard);
-    deleteBtn.innerHTML = '<ion-icon name="arrow-undo-outline"></ion-icon>';
+      moveToTrash(taskCard);
+      deleteBtn.innerHTML = '<ion-icon name="arrow-undo-outline"></ion-icon>';
     }
-});
+  });
 
-controlsContainer.appendChild(deleteBtn);
-
-  // Permanent delete button
-const permanentBtn = document.createElement("button");
-permanentBtn.className = "permanent-delete-btn";
-permanentBtn.innerHTML = '<ion-icon name="close-outline"></ion-icon>';
-permanentBtn.setAttribute("aria-label", "Radera permanent");
-
-permanentBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    deleteForever(taskCard);
-});
-
-controlsContainer.appendChild(permanentBtn);
+  targetContainer.appendChild(deleteBtn);
 }

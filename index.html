@@ -36,7 +36,7 @@
           </tr>
         </table>
         <button id="taskBtn">
-          <ion-icon name="add-outline"></ion-icon>
+          <ion-icon name="add-circle-outline"></ion-icon>
         </button>
       </div>
       <div id="inputDiv">
@@ -49,7 +49,11 @@
             <th id="inProgress">Pågående</th>
           </tr>
         </table>
-        <ion-icon id="constructOutline" name="construct-outline"></ion-icon>
+        <button id="taskBtn">
+          <ion-icon name="add-circle-outline"></ion-icon>
+        </button>
+      </div>
+      <div id="inputDiv">
       </div>
     </div>
     <div id="column3">
@@ -59,7 +63,11 @@
             <th id="toReview">Att granska</th>
           </tr>
         </table>
-        <ion-icon id="eyeOutline" name="eye-outline"></ion-icon>
+        <button id="taskBtn">
+          <ion-icon name="add-circle-outline"></ion-icon>
+        </button>
+      </div>
+      <div id="inputDiv">
       </div>
     </div>
     <div id="column4">
@@ -69,7 +77,11 @@
             <th id="done">Klart</th>
           </tr>
         </table>
-        <ion-icon id="checkmarkOutline" name="checkmark-circle-outline"></ion-icon>
+        <button id="taskBtn">
+          <ion-icon name="add-circle-outline"></ion-icon>
+        </button>
+      </div>
+      <div id="inputDiv">
       </div>
     </div>
   </div>
@@ -90,6 +102,12 @@
 
       <!-- This div will contain the list of deleted tasks that can be permanently removed from the board. -->
       <div id="trashList" class="trash-list"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <script> document.write(`© ${new Date().getFullYear()} Kanban Board. All rights reserved.`); </script>
+  </footer>
 </body>
 
 </html>
