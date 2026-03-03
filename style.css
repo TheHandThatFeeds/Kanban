@@ -3,10 +3,22 @@
     box-sizing: border-box;
 }
 
+@keyframes bgDrift {
+    0% {
+        background-position: 0% 0%; /* Start position */
+    }
+    50% {
+        background-position: 100% 100%; /* End position (diagonal drift) */
+    }
+    100% {
+        background-position: 0% 0%; /* Return to start position */
+    }
+}
+
 body {
     font-family: Arial, sans-serif;
     background-image: url('img/14776.jpg');
-    background-size: cover;
+    background-size: 110%;
     background-position: center;
     background-color: rgba(228, 239, 228, 0.8);
     margin: 0;
@@ -15,6 +27,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    animation: bgDrift 30s ease-in-out infinite;
 }
 
 .navbar {
@@ -95,23 +108,20 @@ body {
     flex-direction: row;
     gap: 50px;
     border-radius: 5px;
-    z-index: 1;
+    z-index: 1; 
     height: auto;
     padding: 10px;
     border-style: solid;
     align-items: center;
 }
 
-#taskBtn,
-#inProgressBtn,
-#toReviewBtn,
-#doneBtn {
+#taskBtn{
     width: 28px;
     height: 28px;
     padding: 0;
     border: none;
     border-radius: 50%;
-    cursor: pointer;
+    cursor: crosshair;
     background-color: transparent;
     color: rgb(16, 16, 16);
     display: flex;
@@ -121,10 +131,7 @@ body {
     line-height: 0;
 }
 
-#taskBtn ion-icon,
-#inProgressBtn ion-icon,
-#toReviewBtn ion-icon,
-#doneBtn ion-icon {
+#taskBtn ion-icon {
     font-size: 18px;
     display: block;
     height: 100%;
@@ -132,7 +139,6 @@ body {
     align-items: center;
     justify-content: center;
 }
-
 
 #inputDiv {
     padding-top: 10px;
@@ -157,6 +163,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    z-index: 1; 
 }
 
 .task-card:hover {
@@ -238,7 +245,6 @@ body {
     justify-content: flex-end;
     gap: 8px;
 }
-
 
 .edit-save-btn,
 .edit-cancel-btn {
@@ -372,15 +378,13 @@ body {
     background-color: #da190b;
 }
 
-
-
 /* Borttagna kort*/
 .trash-zone {
     width: 90%;
     margin: 0 auto;
     padding: 20px;
     border-radius: 10px;
-    background-color: transparent;
+    background: transparent;
 }
 
 #trashColumn {
@@ -523,6 +527,3 @@ body {
 .task-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
 }
-
-
-
