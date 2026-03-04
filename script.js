@@ -89,7 +89,7 @@ function removeInputFields(inputDiv) {
 // Add click event listeners to all "Lägg till" buttons and pass the corresponding inputDiv to the handler function.
 addButtons.forEach((button) => { // Loop through each button with id "taskBtn"
   const column = button.closest('div[id^="column"]'); // Find the closest parent div with an id that starts with "column"
-  const inputDiv = column?.querySelector('#inputDiv'); // Find the inputDiv within that column
+  const inputDiv = column?.querySelector('[id^="inputDiv"]'); // Find all the inputDiv that starts with inputDiv. Changed the id in HTML files to inputDiv-column1, inputDiv-column2 etc. to make it possible to have multiple inputDivs for each column. This line finds the correct inputDiv for the clicked button.
 
   if (!inputDiv) { 
     return;

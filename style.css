@@ -140,12 +140,11 @@ body {
     justify-content: center;
 }
 
-#inputDiv {
+[id^="inputDiv"] {
     padding-top: 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-
     flex: 1;
     min-height: 0;
     overflow-y: auto;

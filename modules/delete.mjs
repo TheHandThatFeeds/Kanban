@@ -24,12 +24,21 @@ trashList.appendChild(taskCard);
 export function restoreFromTrash(taskCard) {
 const prevParentId = taskCard.dataset.prevParentId;
 const prevParent = prevParentId ? document.getElementById(prevParentId) : null;
-const fallback = document.getElementById("inputDiv");
+const fallback = document.querySelector("[id^='inputDiv']"); // Fallback to any inputDiv if previous parent is not found
 
 taskCard.classList.remove("in-trash");
-(prevParent || fallback)?.appendChild(taskCard);
+// (prevParent || fallback)?.appendChild(taskCard);
+const targetParent = prevParent || fallback;
+if (targetParent) {
+  targetParent.appendChild(taskCard);
+}
 
 delete taskCard.dataset.prevParentId;
+// Updates the delete button to show delete icon when restored from trash
+const deleteBtn = taskCard.querySelector(".delete-task-btn");
+if (deleteBtn) {
+  deleteBtn.innerHTML = '<ion-icon name="close-outline"></ion-icon>';
+}
 }
 
 export function deleteForever(taskCard) {
@@ -51,11 +60,12 @@ if (confirm("Är du säker att du vill tömma papperskorgen? Alla kort i pappers
     while (trashList.firstChild) { // Loop through all child nodes of the trash list and remove them one by one until the trash list is empty.
         trashList.firstChild.remove();
     }
-}
+  }
 }
 
-emptyTrashBtn.addEventListener('click', emptyTrash);
-
+if (emptyTrashBtn) {
+  emptyTrashBtn.addEventListener('click', emptyTrash);
+}
 
 
 // This function creates the input fields for adding a new task, along with "Lägg till" and "Avbryt" buttons. 
