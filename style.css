@@ -3,18 +3,6 @@
     box-sizing: border-box;
 }
 
-@keyframes bgDrift {
-    0% {
-        background-position: 0% 0%; /* Start position */
-    }
-    50% {
-        background-position: 100% 100%; /* End position (diagonal drift) */
-    }
-    100% {
-        background-position: 0% 0%; /* Return to start position */
-    }
-}
-
 body {
     font-family: Arial, sans-serif;
     background-image: url('img/14776.jpg');
@@ -27,33 +15,65 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    animation: bgDrift 30s ease-in-out infinite;
+    animation: bgDrift 50s ease-in-out infinite; 
 }
 
-.navbar {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 12px 20px;
+@keyframes bgDrift {
+    0% {
+        background-position: 0% 0%; 
+    }
+    50% {
+        background-position: 100% 100%; 
+    }
+    100% {
+        background-position: 0% 0%; 
+    }
+}
+.carousel-container {
+    width: 100%;
+    overflow: hidden; 
+    background-color: transparent;
+    padding: 0 20px;
+    margin-top: 3px;
+    flex-direction: row;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 10;
+}
+
+.carousel-track {
     display: flex;
     align-items: center;
-    justify-content: center;
+    width: max-content;
+    gap: 30px;
+    will-change: transform;
+    animation: scroll 50s linear infinite;
 }
 
-.navbar ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.card {
+    flex: 0 0 auto;
+    width: 100px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
     display: flex;
-    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    padding: 0 10px;
 }
 
-.navbar li {
-    display: inline-block;
+@keyframes scroll {
+    0% { 
+        transform: translateX(200%); 
+    }
+    100% { 
+        transform: translateX(-100%); 
+    }
 }
+
 
 .kanban-board {
     display: flex;
@@ -140,11 +160,12 @@ body {
     justify-content: center;
 }
 
-[id^="inputDiv"] {
+#inputDiv {
     padding-top: 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+
     flex: 1;
     min-height: 0;
     overflow-y: auto;
@@ -387,7 +408,7 @@ body {
 }
 
 #trashColumn {
-    background: rgba(0, 0, 0, 0.06);
+    /*background: rgba(0, 0, 0, 0.06);*/
     border-radius: 10px;
     padding: 10px;
     max-height: 260px;
