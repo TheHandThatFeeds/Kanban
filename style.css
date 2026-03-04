@@ -165,7 +165,7 @@ body {
     justify-content: center;
 }
 
-#inputDiv {
+[id^="inputDiv"] {
     padding-top: 10px;
     display: flex;
     flex-direction: column;

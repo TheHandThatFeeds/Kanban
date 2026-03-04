@@ -5,19 +5,18 @@ import { setDragEvents, setupAllDroppableAreas, getDragVisual } from "./modules/
 const addButtons = document.querySelectorAll('#taskBtn');
 
 
-// Denna function sätter upp event listeners för alla "Lägg till" knappar på sidan när DOM är laddat, 
-// så att användaren kan börja skapa nya task-kort genom att klicka på dessa knappar.
+// When the page loading the drop zones are setup and ready to use
 document.addEventListener('DOMContentLoaded', () => {
   setupAllDroppableAreas();
 });
 
-// Denna function returnerar en event handler som hanterar skapandet av ett nytt taskCard när en "Lägg till" knapp klickas.
+// This function will be called when any "Lägg till" button is clicked.
 function createTaskHandler(inputDiv) {
   return function taskBtn() {
     const taskTitle = inputDiv.querySelector('#taskTitle');
     const taskDescription = inputDiv.querySelector('#taskDescription');
 
-    
+    // If inputs do not exist yet, create them
     if (!taskTitle || !taskDescription) {
       createInputFields(inputDiv);
       return;
@@ -42,37 +41,37 @@ function createInputFields(inputDiv) {
     return;
   }
 
-  // Titel input
+  // Create title input
   const taskTitle = document.createElement('input');
   taskTitle.type = 'text';
   taskTitle.id = 'taskTitle';
   taskTitle.placeholder = 'Uppgiftens titel...';
 
-  // Beskrivning textarea
+  // Create description textarea
   const taskDescription = document.createElement('textarea');
   taskDescription.id = 'taskDescription';
   taskDescription.placeholder = 'Beskrivning...';
-  taskDescription.rows = 3; // Sätt antal rader för textarea
+  taskDescription.rows = 3; // Set number of rows for the textarea
 
-  // Lägg till knapp
+  // Create submit button
   const submitBtn = document.createElement('button');
-  submitBtn.id = 'submitTaskBtn'; 
+  submitBtn.id = 'submitTaskBtn';
   submitBtn.textContent = 'Lägg till';
-  submitBtn.onclick = createTaskHandler(inputDiv); 
+  submitBtn.onclick = createTaskHandler(inputDiv); // Call handler again with correct inputDiv
 
-  // Avbryt knapp
+  // Create cancel button
   const cancelBtn = document.createElement('button');
   cancelBtn.id = 'cancelTaskBtn';
   cancelBtn.textContent = 'Avbryt';
   cancelBtn.onclick = () => removeInputFields(inputDiv);
 
-  // En form container för att hålla alla input-fält och knappar
-  const formContainer = document.createElement('div'); 
+  // Create form container wich is a div to hold the input fields and buttons
+  const formContainer = document.createElement('div'); // Located in the taskBtn function, this creates a new div element that will serve as a container for the input fields and buttons
   formContainer.id = 'taskFormContainer';
-  formContainer.appendChild(taskTitle); // Lägg till titel input i form container
-  formContainer.appendChild(taskDescription); // Lägg till beskrivning textarea i form container
-  formContainer.appendChild(submitBtn); // Lägg till submit knapp i form container
-  formContainer.appendChild(cancelBtn); // Lägg till cancel knapp i form container
+  formContainer.appendChild(taskTitle); // Add the title input to the form container
+  formContainer.appendChild(taskDescription); // Add the description textarea to the form container
+  formContainer.appendChild(submitBtn); // Add the submit button to the form container
+  formContainer.appendChild(cancelBtn); // Add the cancel button to the form container
 
   // Insert the form container at the beginning of inputDiv
   inputDiv.insertBefore(formContainer, inputDiv.firstChild);
@@ -87,11 +86,10 @@ function removeInputFields(inputDiv) {
   }
 }
 
-// Denna function har till uppgift att alla div innehållande button taskBtn, 
-// för att sedan skapa en taskCard när knappen klickas.
-addButtons.forEach((button) => { // Går igenom alla element som matchar id '#taskBtn' och lägger till en click-event listener på varje knapp
-  const column = button.closest('div[id^="column"]'); // Hittar närmaste parent div som har ett id som börjar med "column" (dvs. den kolumn där knappen finns)
-  const inputDiv = column?.querySelector('#inputDiv'); // Hittar inputDiv inom den kolumnen, här kommer task-korten att läggas till när de skapas
+// Add click event listeners to all "Lägg till" buttons and pass the corresponding inputDiv to the handler function.
+addButtons.forEach((button) => { // Loop through each button with id "taskBtn"
+  const column = button.closest('div[id^="column"]'); // Find the closest parent div with an id that starts with "column"
+  const inputDiv = column?.querySelector('[id^="inputDiv"]'); // Find all the inputDiv that starts with inputDiv. Changed the id in HTML files to inputDiv-column1, inputDiv-column2 etc. to make it possible to have multiple inputDivs for each column. This line finds the correct inputDiv for the clicked button.
 
   if (!inputDiv) { 
     return;
@@ -100,32 +98,32 @@ addButtons.forEach((button) => { // Går igenom alla element som matchar id '#ta
   button.addEventListener('click', createTaskHandler(inputDiv));
 });
 
-// Denna function skapar ett nytt taskCard element med den angivna titeln och beskrivningen,
-// och lägger till det i den angivna inputDiv containern.
-// Den sätter också upp nödvändiga event listeners för att dra och ta bort task-kortet.
+// This function creates a new task card element with the given title and description,
+// and adds it to the specified inputDiv container.
+// It also sets up the necessary event listeners for dragging and deleting the task card.
 function createTaskElement(titleText, descText, inputDiv) {
-  // Skapa flyttbar task card element
+  // Create a draggable task card
   const taskCard = document.createElement('div');
   taskCard.className = 'task-card';
-  taskCard.draggable = true; // Gör task-kortet flyttbart med drag and drop genom att sätta draggable-attributet till true
+  taskCard.draggable = true; // Make the div draggable
 
-  // Skapa titel element
+  // Create title element
 const title = document.createElement("h3");
   title.className = "task-title";
   title.textContent = titleText;
   taskCard.appendChild(title);
 
-  // Skapa beskrivning element även om det är tomt (för att göra redigering möjlig)
+  // Create description element even if empty (to make edit work)
 const description = document.createElement("p");
   description.className = "task-description";
   description.textContent = descText; // kan vara tomt
   taskCard.appendChild(description);
 
-  // Skapa footer container för tidsstämpel och knappar
+  // Create footer container for timestamp and buttons
   const footer = document.createElement("div");
   footer.className = "task-footer";
 
-  // Skapa tidsstämpel element
+  // Create timestamp element
   const timestamp = document.createElement("span");
   timestamp.className = "task-timestamp";
   const now = new Date();
@@ -134,16 +132,31 @@ const description = document.createElement("p");
 
   taskCard.appendChild(footer);
 
- // Radera knapp
+ // Create delete button
 attachTrashControls(taskCard);
 
- // Redigeringsknapp
+ // Create edit button
 attachEditControls(taskCard, title, description)
 
+// Setup drag and drop elements using move.mjs
+setDragEvents(taskCard);
+getDragVisual(taskCard);
 
-setDragEvents(taskCard); // Sätt upp drag and drop event listeners på task-kortet
-getDragVisual(taskCard); // Preview baserat på task-kortets innehåll
+  // // Add drag event listeners
+  // taskCard.addEventListener('dragstart', handleDragStart);
+  // taskCard.addEventListener('dragend', handleDragEnd);
 
-  // Lägg till det nya task-kortet i inputDiv containern
+  // Append the task card to the container
   inputDiv.appendChild(taskCard);
 }
+
+// // Drag and drop event handlers
+// function handleDragStart(e) {
+//   this.style.opacity = '0.4';
+//   e.dataTransfer.effectAllowed = 'move';
+//   e.dataTransfer.setData('text/html', this.innerHTML);
+// }
+
+// function handleDragEnd(e) {
+//   this.style.opacity = '1';
+// }
