@@ -1,13 +1,16 @@
-export function attachEditControls(taskCard, titleEl, descEl, controlsContainer = null) {
-  const footer = taskCard.querySelector(".task-footer");
-  const targetContainer = footer || controlsContainer || taskCard;
+import { updateStorage } from "./storage.mjs";
 
-const editBtn = document.createElement("button");
-editBtn.className = "edit-task-btn";
-editBtn.setAttribute("aria-label", "Redigera");
-editBtn.innerHTML = '<ion-icon name="pencil-outline"></ion-icon>';
+export function attachEditControls(
+  taskCard,
+  titleEl,
+  descEl,
+  controlsContainer = taskCard,
+) {
+  const editBtn = document.createElement("button");
+  editBtn.className = "edit-task-btn";
+  editBtn.innerHTML = '<ion-icon name="pencil-outline"></ion-icon>';
 
-editBtn.addEventListener("click", (e) => {
+  editBtn.addEventListener("click", (e) => {
     e.stopPropagation();
 
     // Redigera inte om kortet ligger i trash
@@ -44,29 +47,31 @@ editBtn.addEventListener("click", (e) => {
 
     // Avbryt
     form.querySelector(".edit-cancel-btn").addEventListener("click", () => {
-form.remove();
-titleEl.style.display = "";
-descEl.style.display = "";
+      form.remove();
+      titleEl.style.display = "";
+      descEl.style.display = "";
     });
 
     // Spara
     form.querySelector(".edit-save-btn").addEventListener("click", () => {
-const newTitle = input.value.trim();
-const newDesc = textarea.value.trim();
+      const newTitle = input.value.trim();
+      const newDesc = textarea.value.trim();
 
-if (!newTitle) {
+      if (!newTitle) {
         input.focus();
         return;
-}
+      }
 
-titleEl.textContent = newTitle;
-descEl.textContent = newDesc;
+      titleEl.textContent = newTitle;
+      descEl.textContent = newDesc;
 
-form.remove();
-titleEl.style.display = "";
-descEl.style.display = "";
+      form.remove();
+      titleEl.style.display = "";
+      descEl.style.display = "";
+
+      updateStorage(); // uppdatera LS vid edit->save
     });
-});
+  });
 
-targetContainer.appendChild(editBtn);
+  targetContainer.appendChild(editBtn);
 }

@@ -1,3 +1,5 @@
+import { updateStorage } from "./storage.mjs";
+
 let draggedElement = null;
 let sourceColumn = null;
 
@@ -14,12 +16,9 @@ export function getDragVisual(taskCard) {
 
 export function setupAllDroppableAreas() {
   const inputDivs = document.querySelectorAll('[id^="inputDiv"]');
-  const droppableAreas = [
-    ...inputDivs,
-    document.getElementById("trashList")
-  ];
+  const droppableAreas = [...inputDivs, document.getElementById("trashList")];
 
-  droppableAreas.forEach(area => {
+  droppableAreas.forEach((area) => {
     if (area) {
       setupDroppableAreas(area);
     }
@@ -33,17 +32,17 @@ function handleDragStart(e) {
   this.classList.add("dragging");
   e.dataTransfer.effectAllowed = "move";
   e.dataTransfer.setData("text/html", this.innerHTML);
-  
+
   console.log("🟢 Drag started from:", sourceColumn?.id);
 }
 
 function handleDragEnd(e) {
   this.style.opacity = "1";
   this.classList.remove("dragging");
-  document.querySelectorAll(".drag-over").forEach(area => {
+  document.querySelectorAll(".drag-over").forEach((area) => {
     area.classList.remove("drag-over");
   });
-  
+
   sourceColumn = null; // Clear after drag ends
   draggedElement = null;
 }
@@ -91,12 +90,13 @@ function setupDroppableAreas(column) {
 
         const deleteBtn = draggedElement.querySelector(".delete-task-btn");
         if (deleteBtn) {
-          deleteBtn.innerHTML = '<ion-icon name="arrow-undo-outline"></ion-icon>';
+          deleteBtn.innerHTML =
+            '<ion-icon name="arrow-undo-outline"></ion-icon>';
         }
       }
     } else {
       // Moving to a normal column
-      
+
       if (draggedElement.classList.contains("in-trash")) {
         // Restoring from trash
         draggedElement.classList.remove("in-trash");
@@ -115,6 +115,7 @@ function setupDroppableAreas(column) {
         }
       }
     }
+    updateStorage(); // uppdatera ls
   });
 }
 
@@ -122,14 +123,17 @@ function getDragAfterElement(column, y) {
   const allTaskCards = column.querySelectorAll(".task-card:not(.dragging)");
   const draggableElements = [...allTaskCards];
 
-  return draggableElements.reduce((closest, child) => {
-    const box = child.getBoundingClientRect();
-    const offset = y - box.top - box.height / 2;
+  return draggableElements.reduce(
+    (closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
 
-    if (offset < 0 && offset > closest.offset) {
-      return { offset: offset, element: child };
-    } else {
-      return closest;
-    }
-  }, { offset: Number.NEGATIVE_INFINITY }).element;
+      if (offset < 0 && offset > closest.offset) {
+        return { offset: offset, element: child };
+      } else {
+        return closest;
+      }
+    },
+    { offset: Number.NEGATIVE_INFINITY },
+  ).element;
 }

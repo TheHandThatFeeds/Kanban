@@ -1,6 +1,11 @@
 import { attachTrashControls } from "./modules/delete.mjs";
 import { attachEditControls } from "./modules/edit.mjs";
-import { setDragEvents, setupAllDroppableAreas, getDragVisual } from "./modules/move.mjs";
+import {
+  setDragEvents,
+  setupAllDroppableAreas,
+  getDragVisual,
+} from "./modules/move.mjs";
+import { loadTasks, updateStorage } from "./modules/storage.mjs";
 
 const addButtons = document.querySelectorAll('[id^="taskBtn"]');
 
@@ -22,21 +27,20 @@ function createTaskHandler(inputDiv) {
       return;
     }
 
-    const titleText = taskTitle.value.trim();
-    const descText = taskDescription.value.trim();
+  const titleText = taskTitle.value.trim();
+  const descText = taskDescription.value.trim();
 
-    if (titleText === '') {
-      alert('Var god och skriv en uppgift...');
-      return;
-    }
-
-    createTaskElement(titleText, descText, inputDiv);
-    removeInputFields(inputDiv);
+  if (titleText === "") {
+    alert("Var god och skriv en uppgift...");
+    return;
   }
+
+  createTaskElement(titleText, descText, inputDiv);
+  removeInputFields(inputDiv);
 }
 
 function createInputFields(inputDiv) {
-  const existingForm = inputDiv.querySelector('#taskFormContainer');
+  const existingForm = inputDiv.querySelector("#taskFormContainer");
   if (existingForm) {
     return;
   }
@@ -75,12 +79,11 @@ function createInputFields(inputDiv) {
 
   // Insert the form container at the beginning of inputDiv
   inputDiv.insertBefore(formContainer, inputDiv.firstChild);
-
 }
 
 // This function removes the input fields for creating a new task from the DOM.
 function removeInputFields(inputDiv) {
-  const formContainer = inputDiv.querySelector('#taskFormContainer');
+  const formContainer = inputDiv.querySelector("#taskFormContainer");
   if (formContainer) {
     formContainer.remove();
   }
@@ -91,11 +94,11 @@ addButtons.forEach((button) => { // Loop through each button with id "taskBtn"
   const column = button.closest('div[id^="column"]'); // Find the closest parent div with an id that starts with "column"
   const inputDiv = column?.querySelector('[id^="inputDiv"]'); // Find all the inputDiv that starts with inputDiv. Changed the id in HTML files to inputDiv-column1, inputDiv-column2 etc. to make it possible to have multiple inputDivs for each column. This line finds the correct inputDiv for the clicked button.
 
-  if (!inputDiv) { 
+  if (!inputDiv) {
     return;
   }
 
-  button.addEventListener('click', createTaskHandler(inputDiv));
+  button.addEventListener("click", createTaskHandler(inputDiv));
 });
 
 // This function creates a new task card element with the given title and description,
@@ -127,7 +130,10 @@ const description = document.createElement("p");
   const timestamp = document.createElement("span");
   timestamp.className = "task-timestamp";
   const now = new Date();
-  timestamp.textContent = now.toLocaleString('sv-SE'); // Swedish date/time format
+  timestamp.textContent = now.toLocaleString("sv-SE"); // Swedish date/time format
+
+  updateStorage(); // uppdatera localstorage
+
   footer.appendChild(timestamp);
 
   taskCard.appendChild(footer);
