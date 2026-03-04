@@ -6,7 +6,7 @@
 body {
     font-family: Arial, sans-serif;
     background-image: url('img/14776.jpg');
-    background-size: cover;
+    background-size: 110%;
     background-position: center;
     background-color: rgba(228, 239, 228, 0.8);
     margin: 0;
@@ -15,32 +15,70 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    animation: bgDrift 50s ease-in-out infinite; 
 }
 
-.navbar {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 12px 20px;
+@keyframes bgDrift {
+    0% {
+        background-position: 0% 0%; 
+    }
+    50% {
+        background-position: 100% 100%; 
+    }
+    100% {
+        background-position: 0% 0%; 
+    }
+}
+.carousel-container {
+    width: 100%;
+    display: flex;
+    overflow: hidden; 
+    background-color: transparent;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    margin-top: 3px;
+    flex-direction: row;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 10;
+    z-index: 1000;
+    
+}
+
+.carousel-track {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: max-content;
+    gap: 30px;
+   /*  will-change: transform;
+    animation: scroll 50s linear infinite; */
 }
 
-.navbar ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.card {
+    flex: 0 0 auto;
+    width: 100px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
     display: flex;
-    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    padding: 0 10px;
 }
 
-.navbar li {
-    display: inline-block;
-}
+/* @keyframes scroll {
+    0% { 
+        transform: translateX(200%); 
+    }
+    100% { 
+        transform: translateX(-100%); 
+    }
+} */
+
 
 .kanban-board {
     display: flex;
@@ -53,6 +91,7 @@ body {
     border-radius: 10px;
     width: 90%;
     margin: 0 auto;
+    background-color: transparent;
 }
 
 #column1,
@@ -63,11 +102,10 @@ body {
     border-radius: 5px;
     height: 50vh;
     flex: 1;
-
     display: flex;
-        flex-direction: column;
-        min-height: 0;
-        min-width: 260px;
+    flex-direction: column;
+    min-height: 0;
+    min-width: 260px;
 }
 
 #column1 {
@@ -95,45 +133,25 @@ body {
     flex-direction: row;
     gap: 50px;
     border-radius: 5px;
-    z-index: 1;
+    z-index: 1; 
     height: auto;
     padding: 10px;
     border-style: solid;
     align-items: center;
 }
 
-/* är detta en upprening av kod? */
-#innerDivColumn1,
-#innerDivColumn2,
-#innerDivColumn3,
-#innerDivColumn4,
-#innerDivTrash {
-    display: flex;
-    flex-direction: row;
-    gap: 50px;
-    border-radius: 5px;
-    z-index: 1;
-    height: auto;
-    padding: 10px;
-    border-style: solid;
-    align-items: center;
-}
-
-#taskBtn {
+#taskBtn{
     width: 28px;
     height: 28px;
     padding: 0;
     border: none;
     border-radius: 50%;
     cursor: pointer;
-
-    background-color: #4CAF50;
-    color: white;
-
+    background-color: transparent;
+    color: rgb(16, 16, 16);
     display: flex;
     align-items: center;
     justify-content: center;
-
     margin-left: auto;
     line-height: 0;
 }
@@ -141,6 +159,10 @@ body {
 #taskBtn ion-icon {
     font-size: 18px;
     display: block;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 #inputDiv {
@@ -166,6 +188,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    z-index: 1; 
 }
 
 .task-card:hover {
@@ -174,7 +197,7 @@ body {
 }
 
 .task-card:active {
-    cursor: grabbing;
+    cursor: move;
 }
 
 .task-card:has(.edit-form) {
@@ -247,7 +270,6 @@ body {
     justify-content: flex-end;
     gap: 8px;
 }
-
 
 .edit-save-btn,
 .edit-cancel-btn {
@@ -381,38 +403,17 @@ body {
     background-color: #da190b;
 }
 
-#constructOutline {
-    color: rgb(6, 5, 6);
-    border: none;
-    padding-top: 5px;
-    margin-left: auto;
-}
-
-#eyeOutline {
-    color: rgb(6, 8, 15);
-    border: none;
-    padding-top: 5px;
-    margin-left: auto;
-}
-
-
-#checkmarkOutline {
-    color: rgb(16, 1, 1);
-    border: none;
-    padding-top: 5px;
-    margin-left: auto;
-}
-
 /* Borttagna kort*/
 .trash-zone {
     width: 90%;
     margin: 0 auto;
     padding: 20px;
     border-radius: 10px;
+    background-color: transparent;
 }
 
 #trashColumn {
-    background: rgba(0, 0, 0, 0.06);
+    /*background: rgba(0, 0, 0, 0.06);*/
     border-radius: 10px;
     padding: 10px;
     max-height: 260px;
@@ -424,8 +425,10 @@ body {
 #innerDivTrash {
     background-color: #d9f164;
     display: flex;
+    flex-wrap: nowrap;
     flex-direction: row;
-    gap: 90%;
+    justify-content: space-between;
+    gap: 10px;
     border-radius: 5px;
     z-index: 1;
     height: auto;
@@ -437,13 +440,20 @@ body {
 #emptyTrashBtn {
     border: none;
     background: transparent;
+    height: auto;
+    width: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: auto;
+    padding: 0;
     
 }
 
 #emptyTrashBtn :hover {
     color: #da190b;
     cursor: pointer;
-    animation: shake 1s;
+    animation: shake 2s;
     animation-iteration-count: infinite;
 }
 
@@ -550,5 +560,12 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
 }
 
-
-
+.footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 20px 10px;
+    font-size: 14px;
+    color: white;
+    background-color: transparent;
+    width: 100%;
+}

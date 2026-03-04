@@ -5,13 +5,18 @@ export function setDragEvents(taskCard) {
   taskCard.addEventListener("dragend", handleDragEnd);
 }
 
+// Consolidated visual feedback for drag operations
+export function getDragVisual(taskCard) {
+  // Visual feedback is now handled in handleDragStart and handleDragEnd
+  // No need for separate event listeners
+}
+
 // Setup droppable areas for columns and trash
 export function setupAllDroppableAreas() {
+  // Get all inputDiv containers (one per column)
+  const inputDivs = document.querySelectorAll('#inputDiv');
   const droppableAreas = [
-    document.getElementById("inputDiv"),
-    document.getElementById("column2"),
-    document.getElementById("column3"),
-    document.getElementById("column4"),
+    ...inputDivs, // Add all inputDivs as droppable areas
     document.getElementById("trashList")
   ];
 
@@ -26,6 +31,7 @@ export function setupAllDroppableAreas() {
 function handleDragStart(e) {
   draggedElement = this;
   this.style.opacity = "0.5";
+  this.classList.add("dragging");
   e.dataTransfer.effectAllowed = "move";
   e.dataTransfer.setData("text/html", this.innerHTML);
 }
@@ -33,6 +39,7 @@ function handleDragStart(e) {
 // Drag end
 function handleDragEnd(e) {
   this.style.opacity = "1";
+  this.classList.remove("dragging");
   document.querySelectorAll(".drag-over").forEach(area => {
     area.classList.remove("drag-over");
   });
@@ -98,13 +105,15 @@ function setupDroppableAreas(column) {
 
 // Helper to find the element after which the dragged element should be inserted
 function getDragAfterElement(column, y) {
-  // Get all draggable elements in the column except the one being dragged
-  const draggableElements = [...column.querySelectorAll(".task-card:not(.dragging)")];
+  // Get all task cards in the column except the one being dragged, and filter to only direct children
+  const allTaskCards = column.querySelectorAll(".task-card");
+  const draggableElements = [...allTaskCards].filter(card => !card.classList.contains("dragging"));
 
   return draggableElements.reduce((closest, child) => {
     const box = child.getBoundingClientRect();
     const offset = y - box.top - box.height / 2;
 
+    // Find the first element below the drag position (offset > 0) with smallest offset
     if (offset < 0 && offset > closest.offset) {
       return { offset: offset, element: child };
     } else {
@@ -113,13 +122,3 @@ function getDragAfterElement(column, y) {
   }, { offset: Number.NEGATIVE_INFINITY }).element;
 }
 
-// When drag starts, add a class to the element for visual feedback
-export function getDragVisual(taskCard) {
-  taskCard.addEventListener("dragstart", function() {
-    this.classList.add("dragging");
-  });
-
-  taskCard.addEventListener("dragend", function() {
-    this.classList.remove("dragging");
-    });
-}

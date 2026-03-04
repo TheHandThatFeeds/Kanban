@@ -1,6 +1,10 @@
-export function attachEditControls(taskCard, titleEl, descEl, controlsContainer = taskCard) {
+export function attachEditControls(taskCard, titleEl, descEl, controlsContainer = null) {
+  const footer = taskCard.querySelector(".task-footer");
+  const targetContainer = footer || controlsContainer || taskCard;
+
 const editBtn = document.createElement("button");
 editBtn.className = "edit-task-btn";
+editBtn.setAttribute("aria-label", "Redigera");
 editBtn.innerHTML = '<ion-icon name="pencil-outline"></ion-icon>';
 
 editBtn.addEventListener("click", (e) => {
@@ -64,5 +68,5 @@ descEl.style.display = "";
     });
 });
 
-controlsContainer.appendChild(editBtn);
+targetContainer.appendChild(editBtn);
 }
