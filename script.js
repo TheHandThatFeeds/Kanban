@@ -9,17 +9,21 @@ import { loadTasks, updateStorage } from "./modules/storage.mjs";
 
 const addButtons = document.querySelectorAll('[id^="taskBtn"]');
 
-
 // When the page loading the drop zones are setup and ready to use
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   setupAllDroppableAreas();
+
+  const savedTasks = loadTasks();
+  savedTasks.forEach((t) => {
+    createTaskElement(t.title, t.description, t.timestamp, t.columnId);
+  });
 });
 
 // This function will be called when any "Lägg till" button is clicked.
 function createTaskHandler(inputDiv) {
   return function taskBtn() {
-    const taskTitle = inputDiv.querySelector('#taskTitle');
-    const taskDescription = inputDiv.querySelector('#taskDescription');
+    const taskTitle = inputDiv.querySelector("#taskTitle");
+    const taskDescription = inputDiv.querySelector("#taskDescription");
 
     // If inputs do not exist yet, create them
     if (!taskTitle || !taskDescription) {
@@ -27,16 +31,17 @@ function createTaskHandler(inputDiv) {
       return;
     }
 
-  const titleText = taskTitle.value.trim();
-  const descText = taskDescription.value.trim();
+    const titleText = taskTitle.value.trim();
+    const descText = taskDescription.value.trim();
 
-  if (titleText === "") {
-    alert("Var god och skriv en uppgift...");
-    return;
-  }
+    if (titleText === "") {
+      alert("Var god och skriv en uppgift...");
+      return;
+    }
 
-  createTaskElement(titleText, descText, inputDiv);
-  removeInputFields(inputDiv);
+    createTaskElement(titleText, descText, inputDiv);
+    removeInputFields(inputDiv);
+  };
 }
 
 function createInputFields(inputDiv) {
@@ -46,32 +51,32 @@ function createInputFields(inputDiv) {
   }
 
   // Create title input
-  const taskTitle = document.createElement('input');
-  taskTitle.type = 'text';
-  taskTitle.id = 'taskTitle';
-  taskTitle.placeholder = 'Uppgiftens titel...';
+  const taskTitle = document.createElement("input");
+  taskTitle.type = "text";
+  taskTitle.id = "taskTitle";
+  taskTitle.placeholder = "Uppgiftens titel...";
 
   // Create description textarea
-  const taskDescription = document.createElement('textarea');
-  taskDescription.id = 'taskDescription';
-  taskDescription.placeholder = 'Beskrivning...';
+  const taskDescription = document.createElement("textarea");
+  taskDescription.id = "taskDescription";
+  taskDescription.placeholder = "Beskrivning...";
   taskDescription.rows = 3; // Set number of rows for the textarea
 
   // Create submit button
-  const submitBtn = document.createElement('button');
-  submitBtn.id = 'submitTaskBtn';
-  submitBtn.textContent = 'Lägg till';
+  const submitBtn = document.createElement("button");
+  submitBtn.id = "submitTaskBtn";
+  submitBtn.textContent = "Lägg till";
   submitBtn.onclick = createTaskHandler(inputDiv); // Call handler again with correct inputDiv
 
   // Create cancel button
-  const cancelBtn = document.createElement('button');
-  cancelBtn.id = 'cancelTaskBtn';
-  cancelBtn.textContent = 'Avbryt';
+  const cancelBtn = document.createElement("button");
+  cancelBtn.id = "cancelTaskBtn";
+  cancelBtn.textContent = "Avbryt";
   cancelBtn.onclick = () => removeInputFields(inputDiv);
 
   // Create form container wich is a div to hold the input fields and buttons
-  const formContainer = document.createElement('div'); // Located in the taskBtn function, this creates a new div element that will serve as a container for the input fields and buttons
-  formContainer.id = 'taskFormContainer';
+  const formContainer = document.createElement("div"); // Located in the taskBtn function, this creates a new div element that will serve as a container for the input fields and buttons
+  formContainer.id = "taskFormContainer";
   formContainer.appendChild(taskTitle); // Add the title input to the form container
   formContainer.appendChild(taskDescription); // Add the description textarea to the form container
   formContainer.appendChild(submitBtn); // Add the submit button to the form container
@@ -90,7 +95,8 @@ function removeInputFields(inputDiv) {
 }
 
 // Add click event listeners to all "Lägg till" buttons and pass the corresponding inputDiv to the handler function.
-addButtons.forEach((button) => { // Loop through each button with id "taskBtn"
+addButtons.forEach((button) => {
+  // Loop through each button with id "taskBtn"
   const column = button.closest('div[id^="column"]'); // Find the closest parent div with an id that starts with "column"
   const inputDiv = column?.querySelector('[id^="inputDiv"]'); // Find all the inputDiv that starts with inputDiv. Changed the id in HTML files to inputDiv-column1, inputDiv-column2 etc. to make it possible to have multiple inputDivs for each column. This line finds the correct inputDiv for the clicked button.
 
@@ -106,18 +112,18 @@ addButtons.forEach((button) => { // Loop through each button with id "taskBtn"
 // It also sets up the necessary event listeners for dragging and deleting the task card.
 function createTaskElement(titleText, descText, inputDiv) {
   // Create a draggable task card
-  const taskCard = document.createElement('div');
-  taskCard.className = 'task-card';
+  const taskCard = document.createElement("div");
+  taskCard.className = "task-card";
   taskCard.draggable = true; // Make the div draggable
 
   // Create title element
-const title = document.createElement("h3");
+  const title = document.createElement("h3");
   title.className = "task-title";
   title.textContent = titleText;
   taskCard.appendChild(title);
 
   // Create description element even if empty (to make edit work)
-const description = document.createElement("p");
+  const description = document.createElement("p");
   description.className = "task-description";
   description.textContent = descText; // kan vara tomt
   taskCard.appendChild(description);
@@ -138,15 +144,15 @@ const description = document.createElement("p");
 
   taskCard.appendChild(footer);
 
- // Create delete button
-attachTrashControls(taskCard);
+  // Create delete button
+  attachTrashControls(taskCard);
 
- // Create edit button
-attachEditControls(taskCard, title, description)
+  // Create edit button
+  attachEditControls(taskCard, title, description);
 
-// Setup drag and drop elements using move.mjs
-setDragEvents(taskCard);
-getDragVisual(taskCard);
+  // Setup drag and drop elements using move.mjs
+  setDragEvents(taskCard);
+  getDragVisual(taskCard);
 
   // // Add drag event listeners
   // taskCard.addEventListener('dragstart', handleDragStart);
@@ -165,4 +171,4 @@ getDragVisual(taskCard);
 
 // function handleDragEnd(e) {
 //   this.style.opacity = '1';
-// }
+//

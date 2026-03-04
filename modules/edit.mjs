@@ -73,5 +73,5 @@ export function attachEditControls(
     });
   });
 
-  targetContainer.appendChild(editBtn);
+  taskCard.appendChild(editBtn);
 }
