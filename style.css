@@ -31,8 +31,11 @@ body {
 }
 .carousel-container {
     width: 100%;
+    display: flex;
     overflow: hidden; 
     background-color: transparent;
+    align-items: center;
+    justify-content: center;
     padding: 0 20px;
     margin-top: 3px;
     flex-direction: row;
@@ -40,16 +43,18 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 10;
+    z-index: 1000;
+    
 }
 
 .carousel-track {
     display: flex;
     align-items: center;
+    justify-content: center;
     width: max-content;
     gap: 30px;
-    will-change: transform;
-    animation: scroll 50s linear infinite;
+   /*  will-change: transform;
+    animation: scroll 50s linear infinite; */
 }
 
 .card {
@@ -65,14 +70,14 @@ body {
     padding: 0 10px;
 }
 
-@keyframes scroll {
+/* @keyframes scroll {
     0% { 
         transform: translateX(200%); 
     }
     100% { 
         transform: translateX(-100%); 
     }
-}
+} */
 
 
 .kanban-board {
@@ -160,7 +165,7 @@ body {
     justify-content: center;
 }
 
-#inputDiv {
+[id^="inputDiv"] {
     padding-top: 10px;
     display: flex;
     flex-direction: column;
@@ -420,8 +425,10 @@ body {
 #innerDivTrash {
     background-color: #d9f164;
     display: flex;
+    flex-wrap: nowrap;
     flex-direction: row;
-    gap: 90%;
+    justify-content: space-between;
+    gap: 10px;
     border-radius: 5px;
     z-index: 1;
     height: auto;
@@ -433,8 +440,13 @@ body {
 #emptyTrashBtn {
     border: none;
     background: transparent;
-    height: 100%;
-    width: 100%;
+    height: auto;
+    width: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: auto;
+    padding: 0;
     
 }
 

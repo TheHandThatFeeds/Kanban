@@ -29,7 +29,7 @@ export function restoreFromTrash(taskCard) {
   const prevParent = prevParentId
     ? document.getElementById(prevParentId)
     : null;
-  const fallback = document.getElementById("inputDiv");
+  const fallback = document.querySelector("inputDiv");
 
   taskCard.classList.remove("in-trash");
   // (prevParent || fallback)?.appendChild(taskCard);
@@ -44,7 +44,6 @@ export function restoreFromTrash(taskCard) {
   if (deleteBtn) {
     deleteBtn.innerHTML = '<ion-icon name="close-outline"></ion-icon>';
   }
-  updateStorage(); // uppdatera LS
 }
 
 export function deleteForever(taskCard) {
@@ -73,7 +72,6 @@ function emptyTrash() {
       trashList.firstChild.remove();
     }
   }
-  updateStorage(); // uppdatera LS
 }
 
 if (emptyTrashBtn) {
