@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+  <!-- <script type="module" src="main.js"></script> -->
   <script type="module" src="script.js"></script>
   <!-- This script tag is used to load the main JavaScript file of the project, which contains the core functionality and logic for the Kanban board application. -->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -19,13 +20,13 @@
 
 
 <body>
-  <nav class="navbar">
-    <ul>
-      <li>Elvis</li>
-      <li>Ronaldo</li>
-      <li>Maria</li>
-      <li>Linda</li>
-    </ul>
+  <nav class="carousel-container">
+    <div class="carousel-track">
+      <div class="card">Elvis</div>
+      <div class="card">Ronaldo</div>
+      <div class="card">Maria</div>
+      <div class="card">Linda</div>
+    </div>
   </nav>
   <div class="kanban-board">
     <div id="column1">
@@ -39,7 +40,7 @@
           <ion-icon name="add-circle-outline"></ion-icon>
         </button>
       </div>
-      <div id="inputDiv-column1">
+      <div id="inputDiv">
       </div>
     </div>
     <div id="column2">
@@ -53,7 +54,7 @@
           <ion-icon name="add-circle-outline"></ion-icon>
         </button>
       </div>
-      <div id="inputDiv-column2">
+      <div id="inputDiv">
       </div>
     </div>
     <div id="column3">
@@ -67,7 +68,7 @@
           <ion-icon name="add-circle-outline"></ion-icon>
         </button>
       </div>
-      <div id="inputDiv-column3">
+      <div id="inputDiv">
       </div>
     </div>
     <div id="column4">
@@ -81,7 +82,7 @@
           <ion-icon name="add-circle-outline"></ion-icon>
         </button>
       </div>
-      <div id="inputDiv-column4">
+      <div id="inputDiv">
       </div>
     </div>
   </div>
