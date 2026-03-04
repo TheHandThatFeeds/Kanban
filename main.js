@@ -3,6 +3,8 @@
 
 // const addBtn = document.querySelector('#taskBtn')
 // const inputDiv = document.querySelector('#inputDiv')
+// const addBtn = document.querySelector('#taskBtn')
+// const inputDiv = document.querySelector('#inputDiv')
 
 // // This function will be called when the "Lägg till" button is clicked.
 // function taskBtn() {
@@ -117,14 +119,14 @@
 //   inputDiv.appendChild(taskCard);
 // }
 
-// // Drag and drop event handlers
-// // This line stores the HTML content of the dragged element (the task card) in the dataTransfer object. 
-// // This allows the content to be accessed during the drop event, enabling the task card to be moved to a new location on the board.
-// function handleDragStart(e) {
-//   this.style.opacity = '0.4';
-//   e.dataTransfer.effectAllowed = 'move'; 
-//   e.dataTransfer.setData('text/html', this.innerHTML);
-// }
+// Drag and drop event handlers
+// This line stores the HTML content of the dragged element (the task card) in the dataTransfer object.
+// This allows the content to be accessed during the drop event, enabling the task card to be moved to a new location on the board.
+function handleDragStart(e) {
+  this.style.opacity = '0.4';
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/html', this.innerHTML);
+}
 
 // function handleDragEnd(e) {
 //   this.style.opacity = '1';
