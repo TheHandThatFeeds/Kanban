@@ -1,91 +1,94 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <script type="module" src="main.js"></script> -->
+    <script type="module" src="script.js"></script>
+    <!-- This script tag is used to load the main JavaScript file of the project, which contains the core functionality and logic for the Kanban board application. -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <!-- This script tag is used to load the Ionicons library in modern browsers that support ES modules, allowing you to use Ionicons in your project. -->
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <!-- This script tag is a fallback for older browsers that do not support ES modules, ensuring that Ionicons can still be used in those environments. -->
+    <title>Att Göra Lista</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
-  <!-- <script type="module" src="main.js"></script> -->
-  <script type="module" src="script.js"></script>
-  <!-- This script tag is used to load the main JavaScript file of the project, which contains the core functionality and logic for the Kanban board application. -->
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <!-- This script tag is used to load the Ionicons library in modern browsers that support ES modules, allowing you to use Ionicons in your project. -->
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  <!-- This script tag is a fallback for older browsers that do not support ES modules, ensuring that Ionicons can still be used in those environments. -->
-  <title>Att Göra Lista</title>
-</head>
-
-
-<body>
-  <nav class="carousel-container">
-    <div class="carousel-track">
-      <div class="card">Elvis</div>
-      <div class="card">Ronaldo</div>
-      <div class="card">Maria</div>
-      <div class="card">Linda</div>
-    </div>
-  </nav>
-  <div class="kanban-board">
-    <div id="column1">
-      <div id="innerDivColumn1">
-        <table>
-          <tr>
-            <th id="todo">Att göra</th>
-          </tr>
-        </table>
-        <button id="taskBtn1">
-          <ion-icon name="add-circle-outline"></ion-icon>
-        </button>
+  <body>
+    <nav class="carousel-container">
+      <div class="carousel-track">
+        <div class="card">Elvis</div>
+        <div class="card">Ronaldo</div>
+        <div class="card">Maria</div>
+        <div class="card">Linda</div>
       </div>
-      <div id="inputDiv-column1">
+    </nav>
+    <div class="kanban-board">
+      <div id="column1">
+        <div id="innerDivColumn1">
+          <table>
+            <tr>
+              <th id="todo">Att göra</th>
+            </tr>
+          </table>
+          <button id="taskBtn1">
+            <ion-icon name="add-circle-outline"></ion-icon>
+          </button>
+        </div>
+        <div id="inputDiv-column1"></div>
       </div>
-    </div>
-    <div id="column2">
-      <div id="innerDivColumn2">
-        <table>
-          <tr>
-            <th id="inProgress">Pågående</th>
-          </tr>
-        </table>
-        <button id="taskBtn2">
-          <ion-icon name="add-circle-outline"></ion-icon>
-        </button>
+      <div id="column2">
+        <div id="innerDivColumn2">
+          <table>
+            <tr>
+              <th id="inProgress">Pågående</th>
+            </tr>
+          </table>
+          <button id="taskBtn2">
+            <ion-icon name="add-circle-outline"></ion-icon>
+          </button>
+        </div>
+        <div id="inputDiv-column2"></div>
       </div>
-      <div id="inputDiv-column2">
+      <div id="column3">
+        <div id="innerDivColumn3">
+          <table>
+            <tr>
+              <th id="toReview">Att granska</th>
+            </tr>
+          </table>
+          <button id="taskBtn3">
+            <ion-icon name="add-circle-outline"></ion-icon>
+          </button>
+        </div>
+        <div id="inputDiv-column3"></div>
       </div>
-    </div>
-    <div id="column3">
-      <div id="innerDivColumn3">
-        <table>
-          <tr>
-            <th id="toReview">Att granska</th>
-          </tr>
-        </table>
-        <button id="taskBtn3">
-          <ion-icon name="add-circle-outline"></ion-icon>
-        </button>
-      </div>
-      <div id="inputDiv-column3">
+      <div id="column4">
+        <div id="innerDivColumn4">
+          <table>
+            <tr>
+              <th id="done">Klart</th>
+            </tr>
+          </table>
+          <button id="taskBtn4">
+            <ion-icon name="add-circle-outline"></ion-icon>
+          </button>
+        </div>
+        <div id="inputDiv-column4"></div>
       </div>
     </div>
-    <div id="column4">
-      <div id="innerDivColumn4">
-        <table>
-          <tr>
-            <th id="done">Klart</th>
-          </tr>
-        </table>
-        <button id="taskBtn4">
-          <ion-icon name="add-circle-outline"></ion-icon>
-        </button>
-      </div>
-      <div id="inputDiv-column4">
-      </div>
-    </div>
-  </div>
 
     <!-- TRASH / Borttagna -->
     <div class="trash-zone">
@@ -103,14 +106,15 @@
       </div>
     </div>
 
-      <!-- This div will contain the list of deleted tasks that can be permanently removed from the board. -->
-      <div id="trashList" class="trash-list"></div>
-    </div>
-  </div>
+    <!-- This div will contain the list of deleted tasks that can be permanently removed from the board. -->
+    <div id="trashList" class="trash-list"></div>
 
-  <footer class="footer">
-    <script> document.write(`© ${new Date().getFullYear()} Kanban Board. All rights reserved.`); </script>
-  </footer>
-</body>
-
+    <footer class="footer">
+      <script>
+        document.write(
+          `© ${new Date().getFullYear()} Kanban Board. All rights reserved.`,
+        );
+      </script>
+    </footer>
+  </body>
 </html>

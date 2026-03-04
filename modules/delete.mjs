@@ -29,7 +29,7 @@ export function restoreFromTrash(taskCard) {
   const prevParent = prevParentId
     ? document.getElementById(prevParentId)
     : null;
-  const fallback = document.querySelector("inputDiv");
+  const fallback = document.querySelector("inputDiv-column1");
 
   taskCard.classList.remove("in-trash");
   // (prevParent || fallback)?.appendChild(taskCard);

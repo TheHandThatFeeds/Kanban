@@ -39,7 +39,7 @@ function createTaskHandler(inputDiv) {
       return;
     }
 
-    createTaskElement(titleText, descText, inputDiv);
+    createTaskElement(titleText, descText, null, inputDiv);
     removeInputFields(inputDiv);
   };
 }
@@ -110,7 +110,12 @@ addButtons.forEach((button) => {
 // This function creates a new task card element with the given title and description,
 // and adds it to the specified inputDiv container.
 // It also sets up the necessary event listeners for dragging and deleting the task card.
-function createTaskElement(titleText, descText, inputDiv) {
+function createTaskElement(
+  titleText,
+  descText,
+  timeText = null,
+  targetId = null,
+) {
   // Create a draggable task card
   const taskCard = document.createElement("div");
   taskCard.className = "task-card";
@@ -135,13 +140,11 @@ function createTaskElement(titleText, descText, inputDiv) {
   // Create timestamp element
   const timestamp = document.createElement("span");
   timestamp.className = "task-timestamp";
-  const now = new Date();
-  timestamp.textContent = now.toLocaleString("sv-SE"); // Swedish date/time format
 
-  updateStorage(); // uppdatera localstorage
+  // saved timeText if provided, otherwise use current time
+  timestamp.textContent = timeText || new Date().toLocaleString("sv-SE");
 
   footer.appendChild(timestamp);
-
   taskCard.appendChild(footer);
 
   // Create delete button
@@ -154,12 +157,32 @@ function createTaskElement(titleText, descText, inputDiv) {
   setDragEvents(taskCard);
   getDragVisual(taskCard);
 
-  // // Add drag event listeners
-  // taskCard.addEventListener('dragstart', handleDragStart);
-  // taskCard.addEventListener('dragend', handleDragEnd);
+  // find the correct column to append
+  let targetColumn;
+  if (typeof targetId === "string") {
+    targetColumn = document.getElementById(targetId);
+  } else if (targetId) {
+    targetColumn = targetId;
+  } else {
+    targetColumn = document.getElementById("inputDiv-column1"); // Fallback
+  }
 
   // Append the task card to the container
-  inputDiv.appendChild(taskCard);
+  if (targetColumn) {
+    targetColumn.appendChild(taskCard);
+
+    // isual state if loading into trash
+    if (targetColumn.id === "trashList") {
+      taskCard.classList.add("in-trash");
+      const deleteBtn = taskCard.querySelector(".delete-task-btn");
+      if (deleteBtn) {
+        deleteBtn.innerHTML = '<ion-icon name="arrow-undo-outline"></ion-icon>';
+      }
+    }
+  }
+
+  // save the card to storage
+  updateStorage();
 }
 
 // // Drag and drop event handlers

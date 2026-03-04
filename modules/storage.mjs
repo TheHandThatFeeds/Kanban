@@ -7,7 +7,7 @@ export function updateStorage() {
     "inputDiv-column2",
     "inputDiv-column3",
     "inputDiv-column4",
-    "innerDivTrash",
+    "trashList",
   ];
   const tasks = [];
 
