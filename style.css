@@ -140,7 +140,7 @@ body {
     align-items: center;
 }
 
-#taskBtn{
+[id^="taskBtn"] {
     width: 28px;
     height: 28px;
     padding: 0;
@@ -156,7 +156,7 @@ body {
     line-height: 0;
 }
 
-#taskBtn ion-icon {
+[id^="taskBtn"] ion-icon {
     font-size: 18px;
     display: block;
     height: 100%;
