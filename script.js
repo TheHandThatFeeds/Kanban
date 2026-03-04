@@ -2,7 +2,7 @@ import { attachTrashControls } from "./modules/delete.mjs";
 import { attachEditControls } from "./modules/edit.mjs";
 import { setDragEvents, setupAllDroppableAreas, getDragVisual } from "./modules/move.mjs";
 
-const addButtons = document.querySelectorAll('#taskBtn');
+const addButtons = document.querySelectorAll('[id^="taskBtn"]');
 
 
 // When the page loading the drop zones are setup and ready to use
