@@ -2,7 +2,13 @@
 const STORAGE_KEY = "kanban_tasks";
 
 export function updateStorage() {
-  const columnIds = ["inputDiv", "column2", "column3", "column4", "trashList"];
+  const columnIds = [
+    "inputDiv-column1",
+    "inputDiv-column2",
+    "inputDiv-column3",
+    "inputDiv-column4",
+    "innerDivTrash",
+  ];
   const tasks = [];
 
   columnIds.forEach((id) => {

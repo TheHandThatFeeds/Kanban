@@ -32,9 +32,18 @@ export function restoreFromTrash(taskCard) {
   const fallback = document.getElementById("inputDiv");
 
   taskCard.classList.remove("in-trash");
-  (prevParent || fallback)?.appendChild(taskCard);
+  // (prevParent || fallback)?.appendChild(taskCard);
+  const targetParent = prevParent || fallback;
+  if (targetParent) {
+    targetParent.appendChild(taskCard);
+  }
 
   delete taskCard.dataset.prevParentId;
+  // Updates the delete button to show delete icon when restored from trash
+  const deleteBtn = taskCard.querySelector(".delete-task-btn");
+  if (deleteBtn) {
+    deleteBtn.innerHTML = '<ion-icon name="close-outline"></ion-icon>';
+  }
   updateStorage(); // uppdatera LS
 }
 
@@ -67,17 +76,22 @@ function emptyTrash() {
   updateStorage(); // uppdatera LS
 }
 
-emptyTrashBtn.addEventListener("click", emptyTrash);
+if (emptyTrashBtn) {
+  emptyTrashBtn.addEventListener("click", emptyTrash);
+}
 
 // This function creates the input fields for adding a new task, along with "Lägg till" and "Avbryt" buttons.
 // It appends these elements to a form container and inserts the container into the DOM.
 // The "Lägg till" button is set up to call the taskBtn function again to handle the submission of the new task,
 // while the "Avbryt" button calls the removeInputFields function to remove the input fields from the DOM.
 export function attachTrashControls(taskCard, controlsContainer = taskCard) {
-  // Delete
-  // Restore button
+  const footer = taskCard.querySelector(".task-footer");
+  const targetContainer = footer || controlsContainer;
+
+  // Delete / Restore button
   const deleteBtn = document.createElement("button");
   deleteBtn.className = "delete-task-btn";
+  deleteBtn.setAttribute("aria-label", "Radera");
   deleteBtn.innerHTML = '<ion-icon name="close-outline"></ion-icon>';
 
   deleteBtn.addEventListener("click", (e) => {

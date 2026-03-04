@@ -1,21 +1,22 @@
 import { updateStorage } from "./storage.mjs";
 
 let draggedElement = null;
+let sourceColumn = null;
 
 export function setDragEvents(taskCard) {
   taskCard.addEventListener("dragstart", handleDragStart);
   taskCard.addEventListener("dragend", handleDragEnd);
 }
 
-// Setup droppable areas for columns and trash
+// VIKTIGT: Denna funktion måste exporteras även om den är tom!
+export function getDragVisual(taskCard) {
+  // Visual feedback is now handled in handleDragStart and handleDragEnd
+  // No need for separate event listeners
+}
+
 export function setupAllDroppableAreas() {
-  const droppableAreas = [
-    document.getElementById("inputDiv"),
-    document.getElementById("column2"),
-    document.getElementById("column3"),
-    document.getElementById("column4"),
-    document.getElementById("trashList"),
-  ];
+  const inputDivs = document.querySelectorAll('[id^="inputDiv"]');
+  const droppableAreas = [...inputDivs, document.getElementById("trashList")];
 
   droppableAreas.forEach((area) => {
     if (area) {
@@ -24,31 +25,38 @@ export function setupAllDroppableAreas() {
   });
 }
 
-// Drag start
 function handleDragStart(e) {
   draggedElement = this;
+  sourceColumn = this.parentElement; // Save the original column before dragging
   this.style.opacity = "0.5";
+  this.classList.add("dragging");
   e.dataTransfer.effectAllowed = "move";
   e.dataTransfer.setData("text/html", this.innerHTML);
+
+  console.log("🟢 Drag started from:", sourceColumn?.id);
 }
 
-// Drag end
 function handleDragEnd(e) {
   this.style.opacity = "1";
+  this.classList.remove("dragging");
   document.querySelectorAll(".drag-over").forEach((area) => {
     area.classList.remove("drag-over");
   });
+
+  sourceColumn = null; // Clear after drag ends
   draggedElement = null;
 }
 
-// Setup droppable areas for one column
 function setupDroppableAreas(column) {
   column.addEventListener("dragover", (e) => {
     e.preventDefault();
     e.dataTransfer.dropEffect = "move";
     column.classList.add("drag-over");
 
-    // Find where to insert the dragged element
+    if (!draggedElement || !draggedElement.classList.contains("task-card")) {
+      return;
+    }
+
     const afterElement = getDragAfterElement(column, e.clientY);
     if (afterElement == null) {
       column.appendChild(draggedElement);
@@ -58,7 +66,6 @@ function setupDroppableAreas(column) {
   });
 
   column.addEventListener("dragleave", (e) => {
-    // Controls that we leave the column, not just a child element
     if (e.currentTarget.contains(e.relatedTarget)) return;
     column.classList.remove("drag-over");
   });
@@ -67,16 +74,20 @@ function setupDroppableAreas(column) {
     e.preventDefault();
     column.classList.remove("drag-over");
 
-    // Trash logic: if dropped in trash, mark as in-trash, otherwise remove that mark
+    if (!draggedElement) return;
+
+    console.log("🔵 Dropped into:", column.id);
+    console.log("🔵 Source was:", sourceColumn?.id);
+
     if (column.id === "trashList") {
+      // Moving to trash
       if (!draggedElement.classList.contains("in-trash")) {
-        const parent = draggedElement.parentElement;
-        if (parent && parent.id) {
-          draggedElement.dataset.prevParentId = parent.id;
+        if (sourceColumn && sourceColumn.id) {
+          draggedElement.dataset.prevParentId = sourceColumn.id;
+          console.log("✅ Saved prevParentId:", sourceColumn.id);
         }
         draggedElement.classList.add("in-trash");
 
-        // Updates the delete button to show restore icon when moved to trash
         const deleteBtn = draggedElement.querySelector(".delete-task-btn");
         if (deleteBtn) {
           deleteBtn.innerHTML =
@@ -84,15 +95,23 @@ function setupDroppableAreas(column) {
         }
       }
     } else {
-      // Reset from trash if the card is moved to a non-trash column
+      // Moving to a normal column
+
       if (draggedElement.classList.contains("in-trash")) {
+        // Restoring from trash
         draggedElement.classList.remove("in-trash");
         delete draggedElement.dataset.prevParentId;
 
-        // Reset delete button to show delete icon when moved out of trash
         const deleteBtn = draggedElement.querySelector(".delete-task-btn");
         if (deleteBtn) {
           deleteBtn.innerHTML = '<ion-icon name="close-outline"></ion-icon>';
+        }
+        console.log("✅ Restored from trash");
+      } else {
+        // Moving between normal columns - update prevParentId
+        if (column.id && column.id.startsWith("inputDiv")) {
+          draggedElement.dataset.prevParentId = column.id;
+          console.log("✅ Updated prevParentId to:", column.id);
         }
       }
     }
@@ -100,12 +119,9 @@ function setupDroppableAreas(column) {
   });
 }
 
-// Helper to find the element after which the dragged element should be inserted
 function getDragAfterElement(column, y) {
-  // Get all draggable elements in the column except the one being dragged
-  const draggableElements = [
-    ...column.querySelectorAll(".task-card:not(.dragging)"),
-  ];
+  const allTaskCards = column.querySelectorAll(".task-card:not(.dragging)");
+  const draggableElements = [...allTaskCards];
 
   return draggableElements.reduce(
     (closest, child) => {

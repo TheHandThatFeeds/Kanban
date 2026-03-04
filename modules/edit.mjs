@@ -73,5 +73,5 @@ export function attachEditControls(
     });
   });
 
-  controlsContainer.appendChild(editBtn);
+  targetContainer.appendChild(editBtn);
 }

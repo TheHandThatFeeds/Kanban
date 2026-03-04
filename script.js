@@ -27,7 +27,7 @@ function taskBtn() {
 
   // If inputs do not exist yet, create them
   if (!taskTitle || !taskDescription) {
-    createInputFields();
+    createInputFields(inputDiv);
     return;
   }
 
@@ -39,11 +39,16 @@ function taskBtn() {
     return;
   }
 
-  createTaskElement(titleText, descText);
-  removeInputFields();
+  createTaskElement(titleText, descText, inputDiv);
+  removeInputFields(inputDiv);
 }
 
-function createInputFields() {
+function createInputFields(inputDiv) {
+  const existingForm = inputDiv.querySelector("#taskFormContainer");
+  if (existingForm) {
+    return;
+  }
+
   // Create title input
   const taskTitle = document.createElement("input");
   taskTitle.type = "text";
@@ -60,13 +65,13 @@ function createInputFields() {
   const submitBtn = document.createElement("button");
   submitBtn.id = "submitTaskBtn";
   submitBtn.textContent = "Lägg till";
-  submitBtn.onclick = taskBtn; // Call taskBtn again to handle submission after creating input fields
+  submitBtn.onclick = createTaskHandler(inputDiv); // Call handler again with correct inputDiv
 
   // Create cancel button
   const cancelBtn = document.createElement("button");
   cancelBtn.id = "cancelTaskBtn";
   cancelBtn.textContent = "Avbryt";
-  cancelBtn.onclick = removeInputFields;
+  cancelBtn.onclick = () => removeInputFields(inputDiv);
 
   // Create form container wich is a div to hold the input fields and buttons
   const formContainer = document.createElement("div"); // Located in the taskBtn function, this creates a new div element that will serve as a container for the input fields and buttons
@@ -81,17 +86,28 @@ function createInputFields() {
 }
 
 // This function removes the input fields for creating a new task from the DOM.
-function removeInputFields() {
-  const formContainer = document.querySelector("#taskFormContainer");
+function removeInputFields(inputDiv) {
+  const formContainer = inputDiv.querySelector("#taskFormContainer");
   if (formContainer) {
     formContainer.remove();
   }
 }
 
-addBtn.addEventListener("click", taskBtn);
+// Add click event listeners to all "Lägg till" buttons and pass the corresponding inputDiv to the handler function.
+addButtons.forEach((button) => {
+  // Loop through each button with id "taskBtn"
+  const column = button.closest('div[id^="column"]'); // Find the closest parent div with an id that starts with "column"
+  const inputDiv = column?.querySelector('[id^="inputDiv"]'); // Find all the inputDiv that starts with inputDiv. Changed the id in HTML files to inputDiv-column1, inputDiv-column2 etc. to make it possible to have multiple inputDivs for each column. This line finds the correct inputDiv for the clicked button.
+
+  if (!inputDiv) {
+    return;
+  }
+
+  button.addEventListener("click", createTaskHandler(inputDiv));
+});
 
 // This function creates a new task card element with the given title and description,
-// and adds it to the inputDiv container.
+// and adds it to the specified inputDiv container.
 // It also sets up the necessary event listeners for dragging and deleting the task card.
 
 // change:
