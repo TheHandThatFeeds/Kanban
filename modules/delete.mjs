@@ -72,11 +72,11 @@ function emptyTrash() {
       trashList.firstChild.remove();
     }
   }
+  updateStorage();
 }
 
 if (emptyTrashBtn) {
   emptyTrashBtn.addEventListener("click", emptyTrash);
-  updateStorage();
 }
 
 // This function creates the input fields for adding a new task, along with "Lägg till" and "Avbryt" buttons.
