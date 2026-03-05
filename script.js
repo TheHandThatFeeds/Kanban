@@ -1,5 +1,5 @@
-import { attachTrashControls } from "./modules/delete.mjs";
 import { attachEditControls } from "./modules/edit.mjs";
+import { attachTrashControls } from "./modules/delete.mjs";
 import {
   setDragEvents,
   setupAllDroppableAreas,
@@ -147,11 +147,11 @@ function createTaskElement(
   footer.appendChild(timestamp);
   taskCard.appendChild(footer);
 
-  // Create delete button
-  attachTrashControls(taskCard);
-
   // Create edit button
   attachEditControls(taskCard, title, description);
+
+  // Create delete button
+  attachTrashControls(taskCard);
 
   // Setup drag and drop elements using move.mjs
   setDragEvents(taskCard);

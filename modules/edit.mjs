@@ -6,6 +6,8 @@ export function attachEditControls(
   descEl,
   controlsContainer = taskCard,
 ) {
+  const footer = taskCard.querySelector(".task-footer");
+  const targetContainer = footer || controlsContainer;
   const editBtn = document.createElement("button");
   editBtn.className = "edit-task-btn";
   editBtn.innerHTML = '<ion-icon name="pencil-outline"></ion-icon>';
@@ -72,6 +74,5 @@ export function attachEditControls(
       updateStorage(); // uppdatera LS vid edit->save
     });
   });
-
-  taskCard.appendChild(editBtn);
+  targetContainer.appendChild(editBtn);
 }

@@ -87,7 +87,7 @@ export function attachTrashControls(taskCard, controlsContainer = taskCard) {
   const targetContainer = footer || controlsContainer;
 
   // Delete / Restore button
-  const deleteBtn = document.createElement("button");
+   const deleteBtn = document.createElement("button");
   deleteBtn.className = "delete-task-btn";
   deleteBtn.setAttribute("aria-label", "Radera");
   deleteBtn.innerHTML = '<ion-icon name="close-outline"></ion-icon>';
@@ -101,11 +101,11 @@ export function attachTrashControls(taskCard, controlsContainer = taskCard) {
     } else {
       moveToTrash(taskCard);
       deleteBtn.innerHTML = '<ion-icon name="arrow-undo-outline"></ion-icon>';
-      updateStorage(); // Uppdatera LS
+      updateStorage();
     }
   });
 
-  controlsContainer.appendChild(deleteBtn);
+   targetContainer.appendChild(deleteBtn);
 
   // Permanent delete button
   const permanentBtn = document.createElement("button");
@@ -118,5 +118,5 @@ export function attachTrashControls(taskCard, controlsContainer = taskCard) {
     deleteForever(taskCard);
   });
 
-  controlsContainer.appendChild(permanentBtn);
+ targetContainer.appendChild(permanentBtn);
 }
