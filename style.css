@@ -140,7 +140,7 @@ body {
     align-items: center;
 }
 
-[id^="taskBtn"] {
+#taskBtn{
     width: 28px;
     height: 28px;
     padding: 0;
@@ -156,7 +156,7 @@ body {
     line-height: 0;
 }
 
-[id^="taskBtn"] ion-icon {
+#taskBtn ion-icon {
     font-size: 18px;
     display: block;
     height: 100%;
@@ -165,7 +165,7 @@ body {
     justify-content: center;
 }
 
-[id^="inputDiv"] {
+#inputDiv {
     padding-top: 10px;
     display: flex;
     flex-direction: column;
@@ -413,7 +413,7 @@ body {
 }
 
 #trashColumn {
-    /background: rgba(0, 0, 0, 0.06);/
+    /*background: rgba(0, 0, 0, 0.06);*/
     border-radius: 10px;
     padding: 10px;
     max-height: 260px;
@@ -533,7 +533,7 @@ body {
 @media (max-width: 650px) {
     body {
         padding: 80px 10px 10px;
-        /* mindre sidmarginal på mobil */
+        
     }
 
     .kanban-board,
@@ -544,18 +544,18 @@ body {
     }
 }
 
-/* Visuell feedback when the cards are dragged */
+
 .task-card.dragging {
     opacity: 0.5;
     transform: rotate(2deg);
 }
-/* Visuell feedback */
+
 .drag-over {
     background-color: rgba(255, 255, 255, 0.7);
     border: 2px dashed #333;
     transition: all 0.2s ease;
 }
-/* Smooth transition when moving cards */
+
 .task-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
 }
