@@ -77,7 +77,6 @@ function setupDroppableAreas(column) {
       if (!draggedElement.classList.contains("in-trash")) {
         if (sourceColumn && sourceColumn.id) {
           draggedElement.dataset.prevParentId = sourceColumn.id;
-          console.log("✅ Saved prevParentId:", sourceColumn.id);
         }
         draggedElement.classList.add("in-trash");
 
