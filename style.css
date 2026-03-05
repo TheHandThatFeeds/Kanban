@@ -424,7 +424,7 @@ body {
 .trash-zone {
   width: 90%;
   margin: 0 auto;
-  padding: 20px;
+  padding: 15px;
   border-radius: 10px;
   background-color: transparent;
 }
@@ -432,7 +432,6 @@ body {
 #trashColumn {
   /*background: rgba(0, 0, 0, 0.06);*/
   border-radius: 10px;
-  padding: 10px;
   max-height: 260px;
   display: flex;
   flex-direction: column;
@@ -583,7 +582,17 @@ body {
     margin: 0;
     padding: 10px;
   }
-}
+
+  #trashList.trash-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    gap: 10px;
+    }
+    }
+
 
 /* Visuell feedback when the cards are dragged */
 .task-card.dragging {
