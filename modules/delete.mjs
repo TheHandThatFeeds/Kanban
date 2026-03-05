@@ -76,6 +76,7 @@ function emptyTrash() {
 
 if (emptyTrashBtn) {
   emptyTrashBtn.addEventListener("click", emptyTrash);
+  updateStorage();
 }
 
 // This function creates the input fields for adding a new task, along with "Lägg till" and "Avbryt" buttons.
@@ -87,7 +88,7 @@ export function attachTrashControls(taskCard, controlsContainer = taskCard) {
   const targetContainer = footer || controlsContainer;
 
   // Delete / Restore button
-   const deleteBtn = document.createElement("button");
+  const deleteBtn = document.createElement("button");
   deleteBtn.className = "delete-task-btn";
   deleteBtn.setAttribute("aria-label", "Radera");
   deleteBtn.innerHTML = '<ion-icon name="close-outline"></ion-icon>';
@@ -105,7 +106,7 @@ export function attachTrashControls(taskCard, controlsContainer = taskCard) {
     }
   });
 
-   targetContainer.appendChild(deleteBtn);
+  targetContainer.appendChild(deleteBtn);
 
   // Permanent delete button
   const permanentBtn = document.createElement("button");
@@ -118,5 +119,5 @@ export function attachTrashControls(taskCard, controlsContainer = taskCard) {
     deleteForever(taskCard);
   });
 
- targetContainer.appendChild(permanentBtn);
+  targetContainer.appendChild(permanentBtn);
 }
