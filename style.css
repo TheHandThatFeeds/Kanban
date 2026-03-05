@@ -1,73 +1,71 @@
-
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-image: url('img/14776.jpg');
-    background-size: 110%;
-    background-position: center;
-    background-color: rgba(228, 239, 228, 0.8);
-    margin: 0;
-    padding: 80px 20px 20px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    animation: bgDrift 50s ease-in-out infinite; 
+  font-family: Arial, sans-serif;
+  background-image: url("img/14776.jpg");
+  background-size: 110%;
+  background-position: center;
+  background-color: rgba(228, 239, 228, 0.8);
+  margin: 0;
+  padding: 80px 20px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  animation: bgDrift 50s ease-in-out infinite;
 }
 
 @keyframes bgDrift {
-    0% {
-        background-position: 0% 0%; 
-    }
-    50% {
-        background-position: 100% 100%; 
-    }
-    100% {
-        background-position: 0% 0%; 
-    }
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
 }
 .carousel-container {
-    width: 100%;
-    display: flex;
-    overflow: hidden; 
-    background-color: transparent;
-    align-items: center;
-    justify-content: center;
-    padding: 0 20px;
-    margin-top: 3px;
-    flex-direction: row;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  background-color: transparent;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  margin-top: 3px;
+  flex-direction: row;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 }
 
 .carousel-track {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: max-content;
-    gap: 30px;
-   /*  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  gap: 30px;
+  /*  will-change: transform;
     animation: scroll 50s linear infinite; */
 }
 
 .card {
-    flex: 0 0 auto;
-    width: 100px;
-    height: 50px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    padding: 0 10px;
+  flex: 0 0 auto;
+  width: 100px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  padding: 0 10px;
 }
 
 /* @keyframes scroll {
@@ -79,49 +77,48 @@ body {
     }
 } */
 
-
 .kanban-board {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px;
-    border-radius: 10px;
-    width: 90%;
-    margin: 0 auto;
-    background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  margin: 0 auto;
+  background-color: transparent;
 }
 
 #column1,
 #column2,
 #column3,
 #column4 {
-    padding: 10px;
-    border-radius: 5px;
-    height: 50vh;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-    min-width: 260px;
+  padding: 10px;
+  border-radius: 5px;
+  height: 50vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 260px;
 }
 
 #column1 {
-    background-color: rgba(239, 122, 122, 0.8);
+  background-color: rgba(239, 122, 122, 0.8);
 }
 
 #column2 {
-    background-color: rgba(84, 107, 207, 0.8);
+  background-color: rgba(84, 107, 207, 0.8);
 }
 
 #column3 {
-    background-color: rgba(84, 201, 207, 0.8);
+  background-color: rgba(84, 201, 207, 0.8);
 }
 
 #column4 {
-    background-color: rgba(207, 207, 84, 0.8);
+  background-color: rgba(207, 207, 84, 0.8);
 }
 
 #innerDivColumn1,
@@ -129,443 +126,477 @@ body {
 #innerDivColumn3,
 #innerDivColumn4,
 #innerDivTrash {
-    display: flex;
-    flex-direction: row;
-    gap: 50px;
-    border-radius: 5px;
-    z-index: 1; 
-    height: auto;
-    padding: 10px;
-    border-style: solid;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  border-radius: 5px;
+  z-index: 1;
+  height: auto;
+  padding: 10px;
+  border-style: solid;
+  align-items: center;
 }
 
 [id^="taskBtn"] {
-    width: 28px;
-    height: 28px;
-    padding: 0;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    background-color: transparent;
-    color: rgb(16, 16, 16);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: auto;
-    line-height: 0;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: transparent;
+  color: rgb(16, 16, 16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  line-height: 0;
 }
 
 [id^="taskBtn"] ion-icon {
-    font-size: 18px;
-    display: block;
-    height: 100%;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
+  font-size: 18px;
+  display: block;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
 [id^="inputDiv"] {
-    padding-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 
-    flex: 1;
-    min-height: 0;
-    overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }
 
 .task-card {
-    background-color: white;
-    border-radius: 8px;
-    padding: 12px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    cursor: grab;
-    transition: box-shadow 0.2s, transform 0.2s;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    z-index: 1; 
+  background-color: white;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: grab;
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 1;
 }
 
 .task-card:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
 }
 
 .task-card:active {
-    cursor: move;
+  cursor: move;
 }
 
 .task-card:has(.edit-form) {
-    background-color: #fff8c6;
+  background-color: #fff8c6;
 }
 
 .delete-task-btn {
-    background-color: transparent;
-    border: none;
-    color: #999;
-    cursor: pointer;
-    padding: 4px;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.2s, color 0.2s;
+  background-color: transparent;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 }
 
 .delete-task-btn:hover {
-    background-color: #f44336;
-    color: white;
+  background-color: #f44336;
+  color: white;
 }
 
 .delete-task-btn ion-icon {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .edit-task-btn {
-    background-color: transparent;
-    border: none;
-    color: #999;
-    cursor: pointer;
-    padding: 4px;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.2s, color 0.2s;
+  background-color: transparent;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 }
 
 .edit-task-btn:hover {
-    background-color: #2196f3;
-    color: white;
+  background-color: #2196f3;
+  color: white;
 }
 
 .edit-task-btn ion-icon {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .edit-form {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
 }
 
 .edit-form input,
 .edit-form textarea {
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    padding: 8px;
-    box-sizing: border-box;
-    font: inherit;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 8px;
+  box-sizing: border-box;
+  font: inherit;
 }
 
 .edit-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 8px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
 }
 
 .edit-save-btn,
 .edit-cancel-btn {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .edit-save-btn {
-    background-color: #4CAF50;
-    color: white;
+  background-color: #4caf50;
+  color: white;
 }
 
 .edit-cancel-btn {
-    background-color: #f44336;
-    color: white;
+  background-color: #f44336;
+  color: white;
 }
 
 .task-title {
-    margin: 0 0 8px 0;
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
 }
 
 .task-description {
-    margin: 0;
-    font-size: 14px;
-    color: #666;
-    line-height: 1.4;
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.4;
 }
 
 .task-timestamp {
-    margin: 0;
-    font-size: 12px;
-    color: #999;
-    font-style: italic;
+  margin: 0;
+  font-size: 12px;
+  color: #999;
+  font-style: italic;
 }
 
 .task-footer {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-top: 4px;
-    padding-top: 4px;
-    border-top: 1px solid #eee;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid #eee;
+  width: 100%;
 }
 
 .task-footer .task-timestamp {
-    margin-right: auto;
+  margin-right: auto;
 }
 
 .task-footer button {
-    margin: 0;
-    padding: 4px 8px;
+  margin: 0;
+  padding: 4px 8px;
 }
 
 .task-card > button {
-    display: inline-flex;
-    align-self: flex-start;
-    margin: 0;
+  display: inline-flex;
+  align-self: flex-start;
+  margin: 0;
 }
 
 .task-title,
 .task-description {
-    font-family: "Indie Flower"
+  font-family: "Indie Flower";
 }
 
 #taskInput {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
 }
 
 #taskTitle {
-    width: 100%;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 8px;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 8px;
+  box-sizing: border-box;
 }
 
 #taskDescription {
-    width: 100%;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
-    resize: vertical;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  resize: vertical;
+  box-sizing: border-box;
 }
 
 #taskFormContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 15px;
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 10px;
-    border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 15px;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 10px;
+  border-radius: 5px;
 }
 
-#submitTaskBtn, #cancelTaskBtn {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
+#submitTaskBtn,
+#cancelTaskBtn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 #submitTaskBtn {
-    background-color: #4CAF50;
-    color: white;
+  background-color: #4caf50;
+  color: white;
 }
 
 #submitTaskBtn:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
 
 #cancelTaskBtn {
-    background-color: #f44336;
-    color: white;
+  background-color: #f44336;
+  color: white;
 }
 
 #cancelTaskBtn:hover {
-    background-color: #da190b;
+  background-color: #da190b;
 }
 
 /* Borttagna kort*/
 .trash-zone {
-    width: 90%;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: transparent;
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: transparent;
 }
 
 #trashColumn {
-    /*background: rgba(0, 0, 0, 0.06);*/
-    border-radius: 10px;
-    padding: 10px;
-    max-height: 260px;
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
+  /*background: rgba(0, 0, 0, 0.06);*/
+  border-radius: 10px;
+  padding: 10px;
+  max-height: 260px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 #innerDivTrash {
-    background-color: #d9f164;
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 10px;
-    border-radius: 5px;
-    z-index: 1;
-    height: auto;
-    padding: 10px;
-    border-style: solid;
-    align-items: center;
+  background-color: #d9f164;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+  border-radius: 5px;
+  z-index: 1;
+  height: auto;
+  padding: 10px;
+  border-style: solid;
+  align-items: center;
 }
 
 #emptyTrashBtn {
-    border: none;
-    background: transparent;
-    height: auto;
-    width: auto;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-left: auto;
-    padding: 0;
-    
+  border: none;
+  background: transparent;
+  height: auto;
+  width: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: auto;
+  padding: 0;
 }
 
 #emptyTrashBtn :hover {
-    color: #da190b;
-    cursor: pointer;
-    animation: shake 2s;
-    animation-iteration-count: infinite;
+  color: #da190b;
+  cursor: pointer;
+  animation: shake 2s;
+  animation-iteration-count: infinite;
 }
 
 @keyframes shake {
-  0% { transform: translate(1px, 1px) rotate(0deg); }
-  10% { transform: translate(-1px, -2px) rotate(-1deg); }
-  20% { transform: translate(-3px, 0px) rotate(1deg); }
-  30% { transform: translate(3px, 2px) rotate(0deg); }
-  40% { transform: translate(1px, -1px) rotate(1deg); }
-  50% { transform: translate(-1px, 2px) rotate(-1deg); }
-  60% { transform: translate(-3px, 1px) rotate(0deg); }
-  70% { transform: translate(3px, 1px) rotate(-1deg); }
-  80% { transform: translate(-1px, -1px) rotate(1deg); }
-  90% { transform: translate(1px, 2px) rotate(0deg); }
-  100% { transform: translate(1px, -2px) rotate(-1deg); }
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
 }
 
 #trashOutline {
-    color: rgb(6, 5, 6);
-    margin-left: auto;
-    padding-top: 5px;
+  color: rgb(6, 5, 6);
+  margin-left: auto;
+  padding-top: 5px;
 }
 
 /* 4 kort per rad, flera rader, scroll nedåt */
 #trashList.trash-list {
-    flex: 1;
-    min-height: 0;
-    display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding: 10px 0 6px;
-
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 10px 0 6px;
+  margin-left: 110px;
+  margin-right: 100px;
 }
 .task-card.in-trash {
-    opacity: 0.55;
-    filter: grayscale(50%);
+  opacity: 0.55;
+  filter: grayscale(50%);
 }
 
 .permanent-delete-btn {
-    display: none;
-    background: transparent;
-    border: none;
-    color: #999;
-    cursor: pointer;
-    padding: 4px;
-    border-radius: 4px;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.2s, color 0.2s;
+  display: none;
+  background: transparent;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 }
 
 .task-card.in-trash .permanent-delete-btn {
-    display: flex;
+  display: flex;
 }
 
 .permanent-delete-btn:hover {
-    background-color: #f44336;
-    color: #fff;
+  background-color: #f44336;
+  color: #fff;
 }
 
 .permanent-delete-btn ion-icon {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .task-card.in-trash .edit-task-btn {
-    display: none;
+  display: none;
 }
 
 .edit-task-btn,
 .delete-task-btn,
 .permanent-delete-btn {
-    z-index: 2;
+  z-index: 2;
 }
 
 @media (max-width: 650px) {
-    body {
-        padding: 80px 10px 10px;
-        /* mindre sidmarginal på mobil */
-    }
+  body {
+    padding: 80px 10px 10px;
+    /* mindre sidmarginal på mobil */
+  }
 
-    .kanban-board,
-    .trash-zone {
-        width: 100%;
-        margin: 0;
-        padding: 10px;
-    }
+  .kanban-board,
+  .trash-zone {
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+  }
 }
 
 /* Visuell feedback when the cards are dragged */
 .task-card.dragging {
-    opacity: 0.5;
-    transform: rotate(2deg);
+  opacity: 0.5;
+  transform: rotate(2deg);
 }
 /* Visuell feedback */
 .drag-over {
-    background-color: rgba(255, 255, 255, 0.7);
-    border: 2px dashed #333;
-    transition: all 0.2s ease;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 2px dashed #333;
+  transition: all 0.2s ease;
 }
 /* Smooth transition when moving cards */
 .task-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .footer {
-    margin-top: auto;
-    text-align: center;
-    padding: 20px 10px;
-    font-size: 14px;
-    color: white;
-    background-color: transparent;
-    width: 100%;
+  margin-top: auto;
+  text-align: center;
+  padding: 20px 10px;
+  font-size: 14px;
+  color: white;
+  background-color: transparent;
+  width: 100%;
 }
